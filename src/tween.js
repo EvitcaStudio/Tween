@@ -1,6 +1,11 @@
 /**
-@class Tween
-Class for creating a tweening animation
+* Class for creating a tweening animation
+* @class Tween  
+* @license
+* Tween does not have a license at this time.
+* For licensing contact the author
+* @author https://github.com/doubleactii
+* Copyright (c) 2023 Evitca Studio
 */
 class Tween {
     /**
