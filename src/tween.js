@@ -24,81 +24,81 @@ class Tween {
     }
 
     // Robert Penner's easing functions
-    static linear = function(t, b, c, d) {
+    static linear(t, b, c, d) {
         return c * t / d + b;
     }
-    static easeInQuad = function(t, b, c, d) {
+    static easeInQuad(t, b, c, d) {
         return c * (t /= d) * t + b;
     }
-    static easeOutQuad = function(t, b, c, d) {
+    static easeOutQuad(t, b, c, d) {
         return -c * (t /= d) * (t - 2) + b;
     }
-    static easeInOutQuad = function(t, b, c, d) {
+    static easeInOutQuad(t, b, c, d) {
         if ((t /= d / 2) < 1) return c / 2 * t * t + b;
         return -c / 2 * ((--t) * (t - 2) - 1) + b;
     }
-    static easeInSine = function(t, b, c, d) {
+    static easeInSine(t, b, c, d) {
         return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
     }
-    static easeOutSine = function(t, b, c, d) {
+    static easeOutSine(t, b, c, d) {
         return c * Math.sin(t / d * (Math.PI / 2)) + b;
     }
-    static easeInOutSine = function(t, b, c, d) {
+    static easeInOutSine(t, b, c, d) {
         return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
     }
-    static easeInExpo = function(t, b, c, d) {
+    static easeInExpo(t, b, c, d) {
         return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
     }
-    static easeOutExpo = function(t, b, c, d) {
+    static easeOutExpo(t, b, c, d) {
         return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
     }
-    static easeInOutExpo = function(t, b, c, d) {
+    static easeInOutExpo(t, b, c, d) {
         if (t == 0) return b;
         if (t == d) return b + c;
         if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
         return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
     }
-    static easeInCirc = function(t, b, c, d) {
+    static easeInCirc(t, b, c, d) {
         return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
     }
-    static easeOutCirc = function(t, b, c, d) {
+    static easeOutCirc(t, b, c, d) {
         return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
     }
-    static easeInOutCirc = function(t, b, c, d) {
+    static easeInOutCirc(t, b, c, d) {
         if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
         return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
     }
-    static easeInCubic = function(t, b, c, d) {
+    static easeInCubic(t, b, c, d) {
         return c * (t /= d) * t * t + b;
     }
-    static easeOutCubic = function(t, b, c, d) {
+    static easeOutCubic(t, b, c, d) {
         return c * ((t = t / d - 1) * t * t + 1) + b;
     }
-    static easeInOutCubic = function(t, b, c, d) {
+    static easeInOutCubic(t, b, c, d) {
         if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
         return c / 2 * ((t -= 2) * t * t + 2) + b;
     }
-    static easeInQuart = function(t, b, c, d) {
+    static easeInQuart(t, b, c, d) {
         return c * (t /= d) * t * t * t + b;
     }
-    static easeOutQuart = function(t, b, c, d) {
+    static easeOutQuart(t, b, c, d) {
         return -c * ((t = t / d - 1) * t * t * t - 1) + b;
     }
-    static easeInOutQuart = function(t, b, c, d) {
+    static easeInOutQuart(t, b, c, d) {
         if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
         return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
     }
-    static easeInQuint = function(t, b, c, d) {
+    static easeInQuint(t, b, c, d) {
         return c * (t /= d) * t * t * t * t + b;
     }
-    static easeOutQuint = function(t, b, c, d) {
+    static easeOutQuint(t, b, c, d) {
         return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
     }
-    static easeInOutQuint = function(t, b, c, d) {
+    static easeInOutQuint(t, b, c, d) {
         if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
         return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
     }
-    static easeInElastic = function(t, b, c, d) {
+    static easeInElastic(t, b, c, d) {
         var s = 1.70158;
         var p = 0;
         var a = c;
@@ -118,7 +118,7 @@ class Tween {
 		}
         return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
     }
-    static easeOutElastic = function(t, b, c, d) {
+    static easeOutElastic(t, b, c, d) {
         var s = 1.70158;
         var p = 0;
         var a = c;
@@ -138,7 +138,7 @@ class Tween {
 		}
         return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
     }
-    static easeInOutElastic = function(t, b, c, d) {
+    static easeInOutElastic(t, b, c, d) {
         var s = 1.70158;
         var p = 0;
         var a = c;
@@ -159,25 +159,25 @@ class Tween {
         if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
         return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
     }
-    static easeInBack = function(t, b, c, d) {
+    static easeInBack(t, b, c, d) {
         var s = 1.70158;
         return c * (t /= d) * t * ((s + 1) * t - s) + b;
     }
-    static easeOutBack = function(t, b, c, d) {
+    static easeOutBack(t, b, c, d) {
         var s = 1.70158;
         return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
     }
-    static easeInOutBack = function(t, b, c, d) {
+    static easeInOutBack(t, b, c, d) {
         var s = 1.70158;
         if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
         return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
     }
 
-    static easeInBounce = function(t, b, c, d) {
+    static easeInBounce(t, b, c, d) {
         return c - this.easeOutBounce(d - t, 0, c, d) + b;
     }
 
-    static easeOutBounce = function(t, b, c, d) {
+    static easeOutBounce(t, b, c, d) {
         t /= d;
         if (t < 1/2.75) {
             return c * 7.5625 * t * t + b;
@@ -197,7 +197,7 @@ class Tween {
         }
     }
 
-    static easeInOutBounce = function(t, b, c, d) {
+    static easeInOutBounce(t, b, c, d) {
         if (t < d*0.5) {
             return (this.easeInBounce(t*2, 0, c, d)*0.5 + b);
         }
