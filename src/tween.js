@@ -16,16 +16,7 @@ class Tween {
      * @param {string} [pOtions.easing="linear"] - The easing function to use for the animation
      */
     constructor({ start = {}, end = {}, duration = 1000, easing = Tween.linear } = {}) {
-        this.start = start;
-        this.end = end;
-        this.duration = duration;
-        this.easing = typeof(easing) === 'function' ? easing : Tween.linear;
-        this.events = {};
-        this.tweening = false;
-        this.update = null;
-        this.paused = false;
-		this.lastTime = 0;
-        this.elapsed = 0;
+        this._build(start, end, duration, easing);
     }
 
     // Robert Penner's easing functions
@@ -247,6 +238,36 @@ class Tween {
 			return '#' + pColorArray.map((pColor) => Math.abs(Math.round(pColor)).toString(16).padStart(2, '0')).join('');
 		}
 	}
+    /**
+     * Builds/Rebuilds the tween object with new info
+     * @param {Object} pStart - The start object containing the start values
+     * @param {Object} pEnd - The end object containing the end values
+     * @param {number} pDuration -  The duration of the effect
+     * @param {function} pEasing - The easing function to use
+     */
+    _build(pStart, pEnd, pDuration, pEasing) {
+        this.start = pStart;
+        this.end = pEnd;
+        this.duration = pDuration;
+        this.easing = typeof(pEasing) === 'function' ? pEasing : Tween.linear;
+        this.events = {};
+        this.tweening = false;
+        this.update = null;
+        this.paused = false;
+		this.lastTime = 0;
+        this.elapsed = 0;
+    }
+    /**
+     * @param {Object} [pOtions={}] - The options for the tween animation
+     * @param {Object} [pOtions.start={}] - The starting properties of the animation
+     * @param {Object} [pOtions.end={}] - The end properties of the animation
+     * @param {number} [pOtions.duration=1000] - The duration of the animation in milliseconds
+     * @param {string} [pOtions.easing="linear"] - The easing function to use for the animation
+     */
+    build({ start = {}, end = {}, duration = 1000, easing = Tween.linear } = {}) {
+        this._build(start, end, duration, easing);
+        return this;
+    }
     /**
      * @typedef {Object} Event
      * @property {string} event - The event name
