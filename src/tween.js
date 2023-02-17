@@ -7,7 +7,7 @@
 * @author https://github.com/doubleactii
 * Copyright (c) 2023 Evitca Studio
 */
-class Tween {
+export class Tween {
     /**
      * @param {Object} [pOtions={}] - The options for the tween animation
      * @param {Object} [pOtions.start={}] - The starting properties of the animation
