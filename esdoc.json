@@ -23,5 +23,9 @@
           "image": "./evitcastudio_round_branding.png"
         }
       }
+    },
+    {
+        "name": "esdoc-ecmascript-proposal-plugin", 
+        "option": {"all": true}
     }] 
   }

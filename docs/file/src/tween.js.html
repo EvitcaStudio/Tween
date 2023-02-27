@@ -37,10 +37,15 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/tween.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
-@class Tween
-Class for creating a tweening animation
+* Class for creating a tweening animation
+* @class Tween  
+* @license
+* Tween does not have a license at this time.
+* For licensing contact the author
+* @author https://github.com/doubleactii
+* Copyright (c) 2023 Evitca Studio
 */
-class Tween {
+export class Tween {
     /**
      * @param {Object} [pOtions={}] - The options for the tween animation
      * @param {Object} [pOtions.start={}] - The starting properties of the animation
@@ -49,16 +54,7 @@ class Tween {
      * @param {string} [pOtions.easing=&quot;linear&quot;] - The easing function to use for the animation
      */
     constructor({ start = {}, end = {}, duration = 1000, easing = Tween.linear } = {}) {
-        this.start = start;
-        this.end = end;
-        this.duration = duration;
-        this.easing = typeof(easing) === &apos;function&apos; ? easing : Tween.linear;
-        this.events = {};
-        this.tweening = false;
-        this.update = null;
-        this.paused = false;
-		this.lastTime = 0;
-        this.elapsed = 0;
+        this._build(start, end, duration, easing);
     }
 
     // Robert Penner&apos;s easing functions
@@ -281,6 +277,37 @@ class Tween {
 		}
 	}
     /**
+     * Builds/Rebuilds the tween object with new info
+     * @param {Object} pStart - The start object containing the start values
+     * @param {Object} pEnd - The end object containing the end values
+     * @param {number} pDuration -  The duration of the effect
+     * @param {function} pEasing - The easing function to use
+     */
+    _build(pStart, pEnd, pDuration, pEasing) {
+        this.start = pStart;
+        this.end = pEnd;
+        this.duration = pDuration;
+        this.easing = typeof(pEasing) === &apos;function&apos; ? pEasing : Tween.linear;
+        this.events = {};
+        this.exportedValues = {};
+        this.tweening = false;
+        this.update = null;
+        this.paused = false;
+		this.lastTime = 0;
+        this.elapsed = 0;
+    }
+    /**
+     * @param {Object} [pOtions={}] - The options for the tween animation
+     * @param {Object} [pOtions.start={}] - The starting properties of the animation
+     * @param {Object} [pOtions.end={}] - The end properties of the animation
+     * @param {number} [pOtions.duration=1000] - The duration of the animation in milliseconds
+     * @param {string} [pOtions.easing=&quot;linear&quot;] - The easing function to use for the animation
+     */
+    build({ start = {}, end = {}, duration = 1000, easing = Tween.linear } = {}) {
+        this._build(start, end, duration, easing);
+        return this;
+    }
+    /**
      * @typedef {Object} Event
      * @property {string} event - The event name
      * @property {function} callback - The function to be called when the event is triggered
@@ -311,7 +338,7 @@ class Tween {
     /**
      * Update each frame.
      */
-    animationFrame() {
+    animationFrame = () =&gt; {
         if (!this.tweening || this.paused) return;
 		const now = performance.now();
 		if (!this.lastTime) this.lastTime = now;
@@ -326,7 +353,6 @@ class Tween {
             progress = 1;
         }
 
-        let currentValues = {};
 		for (let key in this.end) {
 			let startValue = this.start[key];
 			let endValue = this.end[key];
@@ -338,13 +364,13 @@ class Tween {
 					this.easing(progress, startValue[1], endValue[1] - startValue[1], 1),
 					this.easing(progress, startValue[2], endValue[2] - startValue[2], 1)
 				];
-				currentValues[key] = Tween._rgbToHex(currentRGB);
+				this.exportedValues[key] = Tween._rgbToHex(currentRGB);
 			} else {
-				currentValues[key] = this.easing(progress, startValue, endValue - startValue, 1);
+				this.exportedValues[key] = this.easing(progress, startValue, endValue - startValue, 1);
 			}
 		}
 
-        this.update(currentValues);
+        this.update(this.exportedValues);
 
         if (progress === 1 &amp;&amp; !this.oscillating) {
             this.stop();
@@ -430,6 +456,11 @@ class Tween {
         this.elapsed = 0;
 		this.lastTime = 0;
         this.paused = false;
+        for (const prop in this.exportedValues) {
+            if (this.exportedValues.hasOwnProperty(prop)) {
+                delete this.exportedValues[prop];
+            }
+        }
     }
 }</code></pre>
 

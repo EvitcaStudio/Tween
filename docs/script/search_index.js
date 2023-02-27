@@ -294,6 +294,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/tween.js~tween#_build",
+    "class/src/tween.js~Tween.html#instance-method-_build",
+    "src/tween.js~Tween#_build",
+    "method"
+  ],
+  [
     "src/tween.js~tween#animate",
     "class/src/tween.js~Tween.html#instance-method-animate",
     "src/tween.js~Tween#animate",
@@ -301,8 +307,14 @@ window.esdocSearchIndex = [
   ],
   [
     "src/tween.js~tween#animationframe",
-    "class/src/tween.js~Tween.html#instance-method-animationFrame",
+    "class/src/tween.js~Tween.html#instance-member-animationFrame",
     "src/tween.js~Tween#animationFrame",
+    "member"
+  ],
+  [
+    "src/tween.js~tween#build",
+    "class/src/tween.js~Tween.html#instance-method-build",
+    "src/tween.js~Tween#build",
     "method"
   ],
   [
@@ -339,6 +351,12 @@ window.esdocSearchIndex = [
     "src/tween.js~tween#events",
     "class/src/tween.js~Tween.html#instance-member-events",
     "src/tween.js~Tween#events",
+    "member"
+  ],
+  [
+    "src/tween.js~tween#exportedvalues",
+    "class/src/tween.js~Tween.html#instance-member-exportedValues",
+    "src/tween.js~Tween#exportedValues",
     "member"
   ],
   [
