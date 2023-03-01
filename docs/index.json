@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/tween.js",
-    "content": "/**\r\n* Class for creating a tweening animation\r\n* @class Tween  \r\n* @license\r\n* Tween does not have a license at this time.\r\n* For licensing contact the author\r\n* @author https://github.com/doubleactii\r\n* Copyright (c) 2023 Evitca Studio\r\n*/\r\nexport class Tween {\r\n    /**\r\n     * @param {Object} [pOtions={}] - The options for the tween animation\r\n     * @param {Object} [pOtions.start={}] - The starting properties of the animation\r\n     * @param {Object} [pOtions.end={}] - The end properties of the animation\r\n     * @param {number} [pOtions.duration=1000] - The duration of the animation in milliseconds\r\n     * @param {string} [pOtions.easing=\"linear\"] - The easing function to use for the animation\r\n     */\r\n    constructor({ start = {}, end = {}, duration = 1000, easing = Tween.linear } = {}) {\r\n        this._build(start, end, duration, easing);\r\n    }\r\n\r\n    // Robert Penner's easing functions\r\n    static linear(t, b, c, d) {\r\n        return c * t / d + b;\r\n    }\r\n    static easeInQuad(t, b, c, d) {\r\n        return c * (t /= d) * t + b;\r\n    }\r\n    static easeOutQuad(t, b, c, d) {\r\n        return -c * (t /= d) * (t - 2) + b;\r\n    }\r\n    static easeInOutQuad(t, b, c, d) {\r\n        if ((t /= d / 2) < 1) return c / 2 * t * t + b;\r\n        return -c / 2 * ((--t) * (t - 2) - 1) + b;\r\n    }\r\n    static easeInSine(t, b, c, d) {\r\n        return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;\r\n    }\r\n    static easeOutSine(t, b, c, d) {\r\n        return c * Math.sin(t / d * (Math.PI / 2)) + b;\r\n    }\r\n    static easeInOutSine(t, b, c, d) {\r\n        return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;\r\n    }\r\n    static easeInExpo(t, b, c, d) {\r\n        return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;\r\n    }\r\n    static easeOutExpo(t, b, c, d) {\r\n        return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;\r\n    }\r\n    static easeInOutExpo(t, b, c, d) {\r\n        if (t == 0) return b;\r\n        if (t == d) return b + c;\r\n        if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;\r\n        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;\r\n    }\r\n    static easeInCirc(t, b, c, d) {\r\n        return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;\r\n    }\r\n    static easeOutCirc(t, b, c, d) {\r\n        return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;\r\n    }\r\n    static easeInOutCirc(t, b, c, d) {\r\n        if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;\r\n        return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;\r\n    }\r\n    static easeInCubic(t, b, c, d) {\r\n        return c * (t /= d) * t * t + b;\r\n    }\r\n    static easeOutCubic(t, b, c, d) {\r\n        return c * ((t = t / d - 1) * t * t + 1) + b;\r\n    }\r\n    static easeInOutCubic(t, b, c, d) {\r\n        if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;\r\n        return c / 2 * ((t -= 2) * t * t + 2) + b;\r\n    }\r\n    static easeInQuart(t, b, c, d) {\r\n        return c * (t /= d) * t * t * t + b;\r\n    }\r\n    static easeOutQuart(t, b, c, d) {\r\n        return -c * ((t = t / d - 1) * t * t * t - 1) + b;\r\n    }\r\n    static easeInOutQuart(t, b, c, d) {\r\n        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;\r\n        return -c / 2 * ((t -= 2) * t * t * t - 2) + b;\r\n    }\r\n    static easeInQuint(t, b, c, d) {\r\n        return c * (t /= d) * t * t * t * t + b;\r\n    }\r\n    static easeOutQuint(t, b, c, d) {\r\n        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;\r\n    }\r\n    static easeInOutQuint(t, b, c, d) {\r\n        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;\r\n        return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;\r\n    }\r\n    static easeInElastic(t, b, c, d) {\r\n        var s = 1.70158;\r\n        var p = 0;\r\n        var a = c;\r\n        if (t == 0) return b;\r\n        if ((t /= d) == 1) return b + c;\r\n        if (!p) p = d * .3;\r\n        if (a < Math.abs(c)) {\r\n            a = c;\r\n            var s = p / 4;\r\n        } else {\r\n\t\t\t// Handle the Math.asin(0 / 0) case\r\n\t\t\tif (c === 0 && a === 0) {\r\n\t\t\t\ts = p / (2 * Math.PI) * Math.asin(1);\r\n\t\t\t} else {\r\n\t\t\t\tvar s = p / (2 * Math.PI) * Math.asin(c / a);\r\n\t\t\t}\r\n\t\t}\r\n        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;\r\n    }\r\n    static easeOutElastic(t, b, c, d) {\r\n        var s = 1.70158;\r\n        var p = 0;\r\n        var a = c;\r\n        if (t == 0) return b;\r\n        if ((t /= d) == 1) return b + c;\r\n        if (!p) p = d * .3;\r\n        if (a < Math.abs(c)) {\r\n            a = c;\r\n            var s = p / 4;\r\n        } else {\r\n\t\t\t// Handle the Math.asin(0 / 0) case\r\n\t\t\tif (c === 0 && a === 0) {\r\n\t\t\t\ts = p / (2 * Math.PI) * Math.asin(1);\r\n\t\t\t} else {\r\n\t\t\t\tvar s = p / (2 * Math.PI) * Math.asin(c / a);\r\n\t\t\t}\r\n\t\t}\r\n        return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;\r\n    }\r\n    static easeInOutElastic(t, b, c, d) {\r\n        var s = 1.70158;\r\n        var p = 0;\r\n        var a = c;\r\n        if (t == 0) return b;\r\n        if ((t /= d / 2) == 2) return b + c;\r\n        if (!p) p = d * (.3 * 1.5);\r\n        if (a < Math.abs(c)) {\r\n            a = c;\r\n            var s = p / 4;\r\n        } else {\r\n\t\t\t// Handle the Math.asin(0 / 0) case\r\n\t\t\tif (c === 0 && a === 0) {\r\n\t\t\t\ts = p / (2 * Math.PI) * Math.asin(1);\r\n\t\t\t} else {\r\n\t\t\t\tvar s = p / (2 * Math.PI) * Math.asin(c / a);\r\n\t\t\t}\r\n\t\t}\r\n        if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;\r\n        return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;\r\n    }\r\n    static easeInBack(t, b, c, d) {\r\n        var s = 1.70158;\r\n        return c * (t /= d) * t * ((s + 1) * t - s) + b;\r\n    }\r\n    static easeOutBack(t, b, c, d) {\r\n        var s = 1.70158;\r\n        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;\r\n    }\r\n    static easeInOutBack(t, b, c, d) {\r\n        var s = 1.70158;\r\n        if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;\r\n        return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;\r\n    }\r\n\r\n    static easeInBounce(t, b, c, d) {\r\n        return c - this.easeOutBounce(d - t, 0, c, d) + b;\r\n    }\r\n\r\n    static easeOutBounce(t, b, c, d) {\r\n        t /= d;\r\n        if (t < 1/2.75) {\r\n            return c * 7.5625 * t * t + b;\r\n        }\r\n        \r\n        if (t < 2/2.75) {\r\n            t -= 1.5/2.75;\r\n            return c * (7.5625 * t * t + 0.75) + b;\r\n        }\r\n        \r\n        if (t < 2.5/2.75) {\r\n            t -= 2.25/2.75;\r\n            return c * (7.5625 * t * t + 0.9375) + b;\r\n        } else {\r\n            t -= 2.625/2.75;\r\n            return c * (7.5625 * t * t + 0.984375) + b;\r\n        }\r\n    }\r\n\r\n    static easeInOutBounce(t, b, c, d) {\r\n        if (t < d*0.5) {\r\n            return (this.easeInBounce(t*2, 0, c, d)*0.5 + b);\r\n        }\r\n        return (this.easeOutBounce(t*2 - d, 0, c, d)*0.5 + c*0.5 + b);\r\n    }\r\n\t/**\r\n\t * @param {number} pNumber - The number to clamp\r\n\t * @param {number} pMin - The minimum number \r\n\t * @param {number} pMax - The maximum number\r\n\t * @returns {number} The number clamped between the minimum and maximum values\r\n\t */\r\n\tstatic _clamp(pNumber, pMin = 0, pMax = 1) {\r\n\t\treturn Math.max(pMin, Math.min(pNumber, pMax));\r\n\t}\r\n\t/**\r\n\t * Converts an Hex color value to an array of [r, g, b].\r\n\t *\r\n\t * @private\r\n\t * @param {string} pHex - The Hex color in the form \"#fff\" or \"#ffffff\" or tagless.\r\n\t * @return {Array} The array [r, g, b].\r\n\t */\r\n\tstatic _hexToRgb(pHex) {\r\n\t\tpHex = pHex.replace('#', '');\r\n\t\tif (pHex.length === 3) {\r\n\t\t\tpHex = pHex.replace(new RegExp('(.)', 'g'), '$1$1');\r\n\t\t}\r\n\t\tpHex = pHex.match(new RegExp('..', 'g'));\r\n\t\tconst r = Tween._clamp(parseInt(pHex[0], 16), 0, 255);\r\n\t\tconst g = Tween._clamp(parseInt(pHex[1], 16), 0, 255);\r\n\t\tconst b = Tween._clamp(parseInt(pHex[2], 16), 0, 255);\r\n\t\treturn [r, g, b];\r\n\t}\r\n\t/**\r\n\t * Converts an array of [r, g, b] to an Hex color code.\r\n\t * \r\n\t * @private\r\n\t * @param {Array} pColorArray - The rgb color array to convert into a hex\r\n\t * return {string} The hex color\r\n\t */\r\n\tstatic _rgbToHex(pColorArray) {\r\n\t\tif (Array.isArray(pColorArray)) {\r\n\t\t\treturn '#' + pColorArray.map((pColor) => Math.abs(Math.round(pColor)).toString(16).padStart(2, '0')).join('');\r\n\t\t}\r\n\t}\r\n    /**\r\n     * Builds/Rebuilds the tween object with new info\r\n     * @param {Object} pStart - The start object containing the start values\r\n     * @param {Object} pEnd - The end object containing the end values\r\n     * @param {number} pDuration -  The duration of the effect\r\n     * @param {function} pEasing - The easing function to use\r\n     */\r\n    _build(pStart, pEnd, pDuration, pEasing) {\r\n        this.start = pStart;\r\n        this.end = pEnd;\r\n        this.duration = pDuration;\r\n        this.easing = typeof(pEasing) === 'function' ? pEasing : Tween.linear;\r\n        this.events = {};\r\n        this.exportedValues = {};\r\n        this.tweening = false;\r\n        this.update = null;\r\n        this.paused = false;\r\n\t\tthis.lastTime = 0;\r\n        this.elapsed = 0;\r\n    }\r\n    /**\r\n     * @param {Object} [pOtions={}] - The options for the tween animation\r\n     * @param {Object} [pOtions.start={}] - The starting properties of the animation\r\n     * @param {Object} [pOtions.end={}] - The end properties of the animation\r\n     * @param {number} [pOtions.duration=1000] - The duration of the animation in milliseconds\r\n     * @param {string} [pOtions.easing=\"linear\"] - The easing function to use for the animation\r\n     */\r\n    build({ start = {}, end = {}, duration = 1000, easing = Tween.linear } = {}) {\r\n        this._build(start, end, duration, easing);\r\n        return this;\r\n    }\r\n    /**\r\n     * @typedef {Object} Event\r\n     * @property {string} event - The event name\r\n     * @property {function} callback - The function to be called when the event is triggered\r\n     */\r\n    /**\r\n     * Attaches a callback to the specified event.\r\n     * @param {Event['event']} pEvent - The event to attach the callback to\r\n     * @param {Event['callback']} pCallback - The function to be called when the event is triggered\r\n     * @return {Tween} The Tween instance\r\n     */\r\n    on(pEvent, pCallback) {\r\n        if (typeof(pCallback) === \"function\") {\r\n            switch (pEvent) {\r\n                case \"start\":\r\n                case \"end\":\r\n                case \"pause\":\r\n                case \"resume\":\r\n                    this.events[pEvent] = pCallback;\r\n                    break;\r\n                default:\r\n                    console.error(`The event \"${pEvent}\" is not supported.`);\r\n            }\r\n        } else {\r\n            console.error(`The callback for event \"${pEvent}\" is not a function.`);\r\n        }\r\n        return this;\r\n    }\r\n    /**\r\n     * Update each frame.\r\n     */\r\n    animationFrame = () => {\r\n        if (!this.tweening || this.paused) return;\r\n\t\tconst now = performance.now();\r\n\t\tif (!this.lastTime) this.lastTime = now;\r\n        this.elapsed += now - this.lastTime;\r\n        let progress = this.elapsed / this.duration;\r\n        \r\n        if (this.oscillating) {\r\n            progress = (1 - Math.cos(progress * Math.PI)) / 2;\r\n        }\r\n        \r\n        if (progress > 1) {\r\n            progress = 1;\r\n        }\r\n\r\n\t\tfor (let key in this.end) {\r\n\t\t\tlet startValue = this.start[key];\r\n\t\t\tlet endValue = this.end[key];\r\n\t\t\tif (typeof(startValue) === \"string\" && (startValue.length === 3 || startValue.length === 6) || startValue.length === 4 || startValue.length === 7) {\r\n\t\t\t\tstartValue = Tween._hexToRgb(startValue);\r\n\t\t\t\tendValue = Tween._hexToRgb(endValue);\r\n\t\t\t\tconst currentRGB = [\r\n\t\t\t\t\tthis.easing(progress, startValue[0], endValue[0] - startValue[0], 1),\r\n\t\t\t\t\tthis.easing(progress, startValue[1], endValue[1] - startValue[1], 1),\r\n\t\t\t\t\tthis.easing(progress, startValue[2], endValue[2] - startValue[2], 1)\r\n\t\t\t\t];\r\n\t\t\t\tthis.exportedValues[key] = Tween._rgbToHex(currentRGB);\r\n\t\t\t} else {\r\n\t\t\t\tthis.exportedValues[key] = this.easing(progress, startValue, endValue - startValue, 1);\r\n\t\t\t}\r\n\t\t}\r\n\r\n        this.update(this.exportedValues);\r\n\r\n        if (progress === 1 && !this.oscillating) {\r\n            this.stop();\r\n            if (this.events.end) {\r\n                this.events.end();\r\n            }\r\n        } else {\r\n            requestAnimationFrame(this.animationFrame);\r\n        }\r\n\t\tthis.lastTime = now;\r\n    }\r\n    /**\r\n     * Animates the tween by oscillating between the start and end properties.\r\n     * @param {function} pUpdate - A callback function to update the values during the oscillation.\r\n     * @param {boolean} [pOscillate=false] - A flag to indicate if the tween should oscillate.\r\n     * @return {Tween} - Returns the Tween instance for method chaining.\r\n     */\r\n    animate(pUpdate, pOscillate = false) {\r\n        if (typeof(pUpdate) !== \"function\") {\r\n            console.error(\"The pUpdate parameter passed to animate is not a function.\");\r\n            return;\r\n        }\r\n        if (this.tweening) return;\r\n        let startProperties = Object.keys(this.start);\r\n        let endProperties = Object.keys(this.end);\r\n\r\n        if (!startProperties.length || !endProperties.length) {\r\n            console.error(\"The start object or the end object has no properties.\");\r\n            return;\r\n        }\r\n\r\n        if (!startProperties.every(prop => endProperties.includes(prop))) {\r\n            console.error(\"The end object is missing properties that the start object has.\");\r\n            return;\r\n        }\r\n\r\n        this.update = pUpdate;\r\n        this.tweening = true;\r\n\t\tthis.elapsed = 0;\r\n        this.oscillating = pOscillate;\r\n\r\n        if (this.events.start) {\r\n            this.events.start();\r\n        }\r\n        requestAnimationFrame(this.animationFrame);\r\n        return this;\r\n    }\r\n    /**\r\n     * Resumes the tween animation\r\n     * @returns {Tween} The instance of the Tween object\r\n     */\r\n    resume() {\r\n        if (this.paused) {\r\n            this.lastTime = performance.now();\r\n            this.paused = false;\r\n            if (this.events.resume) {\r\n                this.events.resume();\r\n            }\r\n            requestAnimationFrame(this.animationFrame);\r\n        }\r\n        return this;\r\n    }\r\n    /**\r\n     * Pauses the tween animation\r\n     * @returns {Tween} The instance of the Tween object\r\n     */\r\n    pause() {\r\n        if (!this.paused) {\r\n            this.paused = true;\r\n            if (this.events.pause) {\r\n                this.events.pause();\r\n            }\r\n        }\r\n        return this;\r\n    }\r\n    /**\r\n     * Stops the tween and clears all data.\r\n     */\r\n    stop() {\r\n        this.tweening = false;\r\n        this.oscillating = false;\r\n        this.update = null;\r\n        this.elapsed = 0;\r\n\t\tthis.lastTime = 0;\r\n        this.paused = false;\r\n        for (const prop in this.exportedValues) {\r\n            if (this.exportedValues.hasOwnProperty(prop)) {\r\n                delete this.exportedValues[prop];\r\n            }\r\n        }\r\n    }\r\n}",
+    "content": "/**\r\n* Class for creating a tweening animation\r\n* @class Tween  \r\n* @license Tween does not have a license at this time. For licensing contact the author\r\n* @author https://github.com/doubleactii\r\n* Copyright (c) 2023 Evitca Studio\r\n*/\r\nexport class Tween {\r\n    /**\r\n     * @param {Object} [pOtions={}] - The options for the tween animation\r\n     * @param {Object} [pOtions.start={}] - The starting properties of the animation\r\n     * @param {Object} [pOtions.end={}] - The end properties of the animation\r\n     * @param {number} [pOtions.duration=1000] - The duration of the animation in milliseconds\r\n     * @param {string} [pOtions.easing=\"linear\"] - The easing function to use for the animation\r\n     */\r\n    constructor({ start = {}, end = {}, duration = 1000, easing = Tween.linear } = {}) {\r\n        this._build(start, end, duration, easing);\r\n    }\r\n\r\n    // Robert Penner's easing functions\r\n    static linear(t, b, c, d) {\r\n        return c * t / d + b;\r\n    }\r\n    static easeInQuad(t, b, c, d) {\r\n        return c * (t /= d) * t + b;\r\n    }\r\n    static easeOutQuad(t, b, c, d) {\r\n        return -c * (t /= d) * (t - 2) + b;\r\n    }\r\n    static easeInOutQuad(t, b, c, d) {\r\n        if ((t /= d / 2) < 1) return c / 2 * t * t + b;\r\n        return -c / 2 * ((--t) * (t - 2) - 1) + b;\r\n    }\r\n    static easeInSine(t, b, c, d) {\r\n        return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;\r\n    }\r\n    static easeOutSine(t, b, c, d) {\r\n        return c * Math.sin(t / d * (Math.PI / 2)) + b;\r\n    }\r\n    static easeInOutSine(t, b, c, d) {\r\n        return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;\r\n    }\r\n    static easeInExpo(t, b, c, d) {\r\n        return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;\r\n    }\r\n    static easeOutExpo(t, b, c, d) {\r\n        return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;\r\n    }\r\n    static easeInOutExpo(t, b, c, d) {\r\n        if (t == 0) return b;\r\n        if (t == d) return b + c;\r\n        if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;\r\n        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;\r\n    }\r\n    static easeInCirc(t, b, c, d) {\r\n        return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;\r\n    }\r\n    static easeOutCirc(t, b, c, d) {\r\n        return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;\r\n    }\r\n    static easeInOutCirc(t, b, c, d) {\r\n        if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;\r\n        return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;\r\n    }\r\n    static easeInCubic(t, b, c, d) {\r\n        return c * (t /= d) * t * t + b;\r\n    }\r\n    static easeOutCubic(t, b, c, d) {\r\n        return c * ((t = t / d - 1) * t * t + 1) + b;\r\n    }\r\n    static easeInOutCubic(t, b, c, d) {\r\n        if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;\r\n        return c / 2 * ((t -= 2) * t * t + 2) + b;\r\n    }\r\n    static easeInQuart(t, b, c, d) {\r\n        return c * (t /= d) * t * t * t + b;\r\n    }\r\n    static easeOutQuart(t, b, c, d) {\r\n        return -c * ((t = t / d - 1) * t * t * t - 1) + b;\r\n    }\r\n    static easeInOutQuart(t, b, c, d) {\r\n        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;\r\n        return -c / 2 * ((t -= 2) * t * t * t - 2) + b;\r\n    }\r\n    static easeInQuint(t, b, c, d) {\r\n        return c * (t /= d) * t * t * t * t + b;\r\n    }\r\n    static easeOutQuint(t, b, c, d) {\r\n        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;\r\n    }\r\n    static easeInOutQuint(t, b, c, d) {\r\n        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;\r\n        return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;\r\n    }\r\n    static easeInElastic(t, b, c, d) {\r\n        var s = 1.70158;\r\n        var p = 0;\r\n        var a = c;\r\n        if (t == 0) return b;\r\n        if ((t /= d) == 1) return b + c;\r\n        if (!p) p = d * .3;\r\n        if (a < Math.abs(c)) {\r\n            a = c;\r\n            var s = p / 4;\r\n        } else {\r\n\t\t\t// Handle the Math.asin(0 / 0) case\r\n\t\t\tif (c === 0 && a === 0) {\r\n\t\t\t\ts = p / (2 * Math.PI) * Math.asin(1);\r\n\t\t\t} else {\r\n\t\t\t\tvar s = p / (2 * Math.PI) * Math.asin(c / a);\r\n\t\t\t}\r\n\t\t}\r\n        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;\r\n    }\r\n    static easeOutElastic(t, b, c, d) {\r\n        var s = 1.70158;\r\n        var p = 0;\r\n        var a = c;\r\n        if (t == 0) return b;\r\n        if ((t /= d) == 1) return b + c;\r\n        if (!p) p = d * .3;\r\n        if (a < Math.abs(c)) {\r\n            a = c;\r\n            var s = p / 4;\r\n        } else {\r\n\t\t\t// Handle the Math.asin(0 / 0) case\r\n\t\t\tif (c === 0 && a === 0) {\r\n\t\t\t\ts = p / (2 * Math.PI) * Math.asin(1);\r\n\t\t\t} else {\r\n\t\t\t\tvar s = p / (2 * Math.PI) * Math.asin(c / a);\r\n\t\t\t}\r\n\t\t}\r\n        return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;\r\n    }\r\n    static easeInOutElastic(t, b, c, d) {\r\n        var s = 1.70158;\r\n        var p = 0;\r\n        var a = c;\r\n        if (t == 0) return b;\r\n        if ((t /= d / 2) == 2) return b + c;\r\n        if (!p) p = d * (.3 * 1.5);\r\n        if (a < Math.abs(c)) {\r\n            a = c;\r\n            var s = p / 4;\r\n        } else {\r\n\t\t\t// Handle the Math.asin(0 / 0) case\r\n\t\t\tif (c === 0 && a === 0) {\r\n\t\t\t\ts = p / (2 * Math.PI) * Math.asin(1);\r\n\t\t\t} else {\r\n\t\t\t\tvar s = p / (2 * Math.PI) * Math.asin(c / a);\r\n\t\t\t}\r\n\t\t}\r\n        if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;\r\n        return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;\r\n    }\r\n    static easeInBack(t, b, c, d) {\r\n        var s = 1.70158;\r\n        return c * (t /= d) * t * ((s + 1) * t - s) + b;\r\n    }\r\n    static easeOutBack(t, b, c, d) {\r\n        var s = 1.70158;\r\n        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;\r\n    }\r\n    static easeInOutBack(t, b, c, d) {\r\n        var s = 1.70158;\r\n        if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;\r\n        return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;\r\n    }\r\n\r\n    static easeInBounce(t, b, c, d) {\r\n        return c - this.easeOutBounce(d - t, 0, c, d) + b;\r\n    }\r\n\r\n    static easeOutBounce(t, b, c, d) {\r\n        t /= d;\r\n        if (t < 1/2.75) {\r\n            return c * 7.5625 * t * t + b;\r\n        }\r\n        \r\n        if (t < 2/2.75) {\r\n            t -= 1.5/2.75;\r\n            return c * (7.5625 * t * t + 0.75) + b;\r\n        }\r\n        \r\n        if (t < 2.5/2.75) {\r\n            t -= 2.25/2.75;\r\n            return c * (7.5625 * t * t + 0.9375) + b;\r\n        } else {\r\n            t -= 2.625/2.75;\r\n            return c * (7.5625 * t * t + 0.984375) + b;\r\n        }\r\n    }\r\n\r\n    static easeInOutBounce(t, b, c, d) {\r\n        if (t < d*0.5) {\r\n            return (this.easeInBounce(t*2, 0, c, d)*0.5 + b);\r\n        }\r\n        return (this.easeOutBounce(t*2 - d, 0, c, d)*0.5 + c*0.5 + b);\r\n    }\r\n\t/**\r\n\t * @param {number} pNumber - The number to clamp\r\n\t * @param {number} pMin - The minimum number \r\n\t * @param {number} pMax - The maximum number\r\n\t * @returns {number} The number clamped between the minimum and maximum values\r\n\t */\r\n\tstatic _clamp(pNumber, pMin = 0, pMax = 1) {\r\n\t\treturn Math.max(pMin, Math.min(pNumber, pMax));\r\n\t}\r\n\t/**\r\n\t * Converts an Hex color value to an array of [r, g, b].\r\n\t *\r\n\t * @private\r\n\t * @param {string} pHex - The Hex color in the form \"#fff\" or \"#ffffff\" or tagless.\r\n\t * @return {Array} The array [r, g, b].\r\n\t */\r\n\tstatic _hexToRgb(pHex) {\r\n\t\tpHex = pHex.replace('#', '');\r\n\t\tif (pHex.length === 3) {\r\n\t\t\tpHex = pHex.replace(new RegExp('(.)', 'g'), '$1$1');\r\n\t\t}\r\n\t\tpHex = pHex.match(new RegExp('..', 'g'));\r\n\t\tconst r = Tween._clamp(parseInt(pHex[0], 16), 0, 255);\r\n\t\tconst g = Tween._clamp(parseInt(pHex[1], 16), 0, 255);\r\n\t\tconst b = Tween._clamp(parseInt(pHex[2], 16), 0, 255);\r\n\t\treturn [r, g, b];\r\n\t}\r\n\t/**\r\n\t * Converts an array of [r, g, b] to an Hex color code.\r\n\t * \r\n\t * @private\r\n\t * @param {Array} pColorArray - The rgb color array to convert into a hex\r\n\t * return {string} The hex color\r\n\t */\r\n\tstatic _rgbToHex(pColorArray) {\r\n\t\tif (Array.isArray(pColorArray)) {\r\n\t\t\treturn '#' + pColorArray.map((pColor) => Math.abs(Math.round(pColor)).toString(16).padStart(2, '0')).join('');\r\n\t\t}\r\n\t}\r\n    /**\r\n     * Builds/Rebuilds the tween object with new info\r\n     * @param {Object} pStart - The start object containing the start values\r\n     * @param {Object} pEnd - The end object containing the end values\r\n     * @param {number} pDuration -  The duration of the effect\r\n     * @param {function} pEasing - The easing function to use\r\n     */\r\n    _build(pStart, pEnd, pDuration, pEasing) {\r\n        this.start = pStart;\r\n        this.end = pEnd;\r\n        this.duration = pDuration;\r\n        this.easing = typeof(pEasing) === 'function' ? pEasing : Tween.linear;\r\n        this.events = {};\r\n        this.exportedValues = {};\r\n        this.tweening = false;\r\n        this.update = null;\r\n        this.paused = false;\r\n\t\tthis.lastTime = 0;\r\n        this.elapsed = 0;\r\n    }\r\n    /**\r\n     * @param {Object} [pOtions={}] - The options for the tween animation\r\n     * @param {Object} [pOtions.start={}] - The starting properties of the animation\r\n     * @param {Object} [pOtions.end={}] - The end properties of the animation\r\n     * @param {number} [pOtions.duration=1000] - The duration of the animation in milliseconds\r\n     * @param {string} [pOtions.easing=\"linear\"] - The easing function to use for the animation\r\n     */\r\n    build({ start = {}, end = {}, duration = 1000, easing = Tween.linear } = {}) {\r\n        this._build(start, end, duration, easing);\r\n        return this;\r\n    }\r\n    /**\r\n     * @typedef {Object} Event\r\n     * @property {string} event - The event name\r\n     * @property {function} callback - The function to be called when the event is triggered\r\n     */\r\n    /**\r\n     * Attaches a callback to the specified event.\r\n     * @param {Event['event']} pEvent - The event to attach the callback to\r\n     * @param {Event['callback']} pCallback - The function to be called when the event is triggered\r\n     * @return {Tween} The Tween instance\r\n     */\r\n    on(pEvent, pCallback) {\r\n        if (typeof(pCallback) === \"function\") {\r\n            switch (pEvent) {\r\n                case \"start\":\r\n                case \"end\":\r\n                case \"pause\":\r\n                case \"resume\":\r\n                    this.events[pEvent] = pCallback;\r\n                    break;\r\n                default:\r\n                    console.error(`The event \"${pEvent}\" is not supported.`);\r\n            }\r\n        } else {\r\n            console.error(`The callback for event \"${pEvent}\" is not a function.`);\r\n        }\r\n        return this;\r\n    }\r\n    /**\r\n     * Update each frame.\r\n     */\r\n    animationFrame = () => {\r\n        if (!this.tweening || this.paused) return;\r\n\t\tconst now = Date.now();\r\n\t\tif (!this.lastTime) this.lastTime = now;\r\n        this.elapsed += now - this.lastTime;\r\n        let progress = this.elapsed / this.duration;\r\n        \r\n        if (this.oscillating) {\r\n            progress = (1 - Math.cos(progress * Math.PI)) / 2;\r\n        }\r\n        \r\n        if (progress > 1) {\r\n            progress = 1;\r\n        }\r\n\r\n\t\tfor (let key in this.end) {\r\n\t\t\tlet startValue = this.start[key];\r\n\t\t\tlet endValue = this.end[key];\r\n\t\t\tif (typeof(startValue) === \"string\" && (startValue.length === 3 || startValue.length === 6) || startValue.length === 4 || startValue.length === 7) {\r\n\t\t\t\tstartValue = Tween._hexToRgb(startValue);\r\n\t\t\t\tendValue = Tween._hexToRgb(endValue);\r\n\t\t\t\tconst currentRGB = [\r\n\t\t\t\t\tthis.easing(progress, startValue[0], endValue[0] - startValue[0], 1),\r\n\t\t\t\t\tthis.easing(progress, startValue[1], endValue[1] - startValue[1], 1),\r\n\t\t\t\t\tthis.easing(progress, startValue[2], endValue[2] - startValue[2], 1)\r\n\t\t\t\t];\r\n\t\t\t\tthis.exportedValues[key] = Tween._rgbToHex(currentRGB);\r\n\t\t\t} else {\r\n\t\t\t\tthis.exportedValues[key] = this.easing(progress, startValue, endValue - startValue, 1);\r\n\t\t\t}\r\n\t\t}\r\n\r\n        this.update(this.exportedValues);\r\n\r\n        if (progress === 1 && !this.oscillating) {\r\n            this.stop();\r\n            if (this.events.end) {\r\n                this.events.end();\r\n            }\r\n        } else {\r\n            requestAnimationFrame(this.animationFrame);\r\n        }\r\n\t\tthis.lastTime = now;\r\n    }\r\n    /**\r\n     * Animates the tween by oscillating between the start and end properties.\r\n     * @param {function} pUpdate - A callback function to update the values during the oscillation.\r\n     * @param {boolean} [pOscillate=false] - A flag to indicate if the tween should oscillate.\r\n     * @return {Tween} - Returns the Tween instance for method chaining.\r\n     */\r\n    animate(pUpdate, pOscillate = false) {\r\n        if (typeof(pUpdate) !== \"function\") {\r\n            console.error(\"The pUpdate parameter passed to animate is not a function.\");\r\n            return;\r\n        }\r\n        if (this.tweening) return;\r\n        let startProperties = Object.keys(this.start);\r\n        let endProperties = Object.keys(this.end);\r\n\r\n        if (!startProperties.length || !endProperties.length) {\r\n            console.error(\"The start object or the end object has no properties.\");\r\n            return;\r\n        }\r\n\r\n        if (!startProperties.every(prop => endProperties.includes(prop))) {\r\n            console.error(\"The end object is missing properties that the start object has.\");\r\n            return;\r\n        }\r\n\r\n        this.update = pUpdate;\r\n        this.tweening = true;\r\n\t\tthis.elapsed = 0;\r\n        this.oscillating = pOscillate;\r\n\r\n        if (this.events.start) {\r\n            this.events.start();\r\n        }\r\n        requestAnimationFrame(this.animationFrame);\r\n        return this;\r\n    }\r\n    /**\r\n     * Resumes the tween animation\r\n     * @returns {Tween} The instance of the Tween object\r\n     */\r\n    resume() {\r\n        if (this.paused) {\r\n            this.lastTime = Date.now();\r\n            this.paused = false;\r\n            if (this.events.resume) {\r\n                this.events.resume();\r\n            }\r\n            requestAnimationFrame(this.animationFrame);\r\n        }\r\n        return this;\r\n    }\r\n    /**\r\n     * Pauses the tween animation\r\n     * @returns {Tween} The instance of the Tween object\r\n     */\r\n    pause() {\r\n        if (!this.paused) {\r\n            this.paused = true;\r\n            if (this.events.pause) {\r\n                this.events.pause();\r\n            }\r\n        }\r\n        return this;\r\n    }\r\n    /**\r\n     * Stops the tween and clears all data.\r\n     */\r\n    stop() {\r\n        this.tweening = false;\r\n        this.oscillating = false;\r\n        this.update = null;\r\n        this.elapsed = 0;\r\n\t\tthis.lastTime = 0;\r\n        this.paused = false;\r\n        for (const prop in this.exportedValues) {\r\n            if (this.exportedValues.hasOwnProperty(prop)) {\r\n                delete this.exportedValues[prop];\r\n            }\r\n        }\r\n    }\r\n}",
     "static": true,
     "longname": "Z:/Business/Evitca Studio/github/tween/src/tween.js",
     "access": "public",
@@ -586,7 +586,7 @@
     "importPath": "./src/tween.js",
     "importStyle": "{Tween}",
     "description": "Class for creating a tweening animation",
-    "lineNumber": 10,
+    "lineNumber": 8,
     "unknown": [
       {
         "tagName": "@class",
@@ -594,7 +594,7 @@
       },
       {
         "tagName": "@license",
-        "tagValue": "Tween does not have a license at this time.\nFor licensing contact the author"
+        "tagValue": "Tween does not have a license at this time. For licensing contact the author"
       },
       {
         "tagName": "@author",
@@ -614,7 +614,7 @@
     "longname": "src/tween.js~Tween#constructor",
     "access": "public",
     "description": "",
-    "lineNumber": 18,
+    "lineNumber": 16,
     "params": [
       {
         "nullable": null,
@@ -689,7 +689,7 @@
     "longname": "src/tween.js~Tween.linear",
     "access": "public",
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 21,
     "undocument": true,
     "params": [
       {
@@ -734,7 +734,7 @@
     "longname": "src/tween.js~Tween.easeInQuad",
     "access": "public",
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 24,
     "undocument": true,
     "params": [
       {
@@ -779,7 +779,7 @@
     "longname": "src/tween.js~Tween.easeOutQuad",
     "access": "public",
     "description": null,
-    "lineNumber": 29,
+    "lineNumber": 27,
     "undocument": true,
     "params": [
       {
@@ -824,7 +824,7 @@
     "longname": "src/tween.js~Tween.easeInOutQuad",
     "access": "public",
     "description": null,
-    "lineNumber": 32,
+    "lineNumber": 30,
     "undocument": true,
     "params": [
       {
@@ -869,7 +869,7 @@
     "longname": "src/tween.js~Tween.easeInSine",
     "access": "public",
     "description": null,
-    "lineNumber": 36,
+    "lineNumber": 34,
     "undocument": true,
     "params": [
       {
@@ -914,7 +914,7 @@
     "longname": "src/tween.js~Tween.easeOutSine",
     "access": "public",
     "description": null,
-    "lineNumber": 39,
+    "lineNumber": 37,
     "undocument": true,
     "params": [
       {
@@ -959,7 +959,7 @@
     "longname": "src/tween.js~Tween.easeInOutSine",
     "access": "public",
     "description": null,
-    "lineNumber": 42,
+    "lineNumber": 40,
     "undocument": true,
     "params": [
       {
@@ -1004,7 +1004,7 @@
     "longname": "src/tween.js~Tween.easeInExpo",
     "access": "public",
     "description": null,
-    "lineNumber": 45,
+    "lineNumber": 43,
     "undocument": true,
     "params": [
       {
@@ -1049,7 +1049,7 @@
     "longname": "src/tween.js~Tween.easeOutExpo",
     "access": "public",
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 46,
     "undocument": true,
     "params": [
       {
@@ -1094,7 +1094,7 @@
     "longname": "src/tween.js~Tween.easeInOutExpo",
     "access": "public",
     "description": null,
-    "lineNumber": 51,
+    "lineNumber": 49,
     "undocument": true,
     "params": [
       {
@@ -1139,7 +1139,7 @@
     "longname": "src/tween.js~Tween.easeInCirc",
     "access": "public",
     "description": null,
-    "lineNumber": 57,
+    "lineNumber": 55,
     "undocument": true,
     "params": [
       {
@@ -1184,7 +1184,7 @@
     "longname": "src/tween.js~Tween.easeOutCirc",
     "access": "public",
     "description": null,
-    "lineNumber": 60,
+    "lineNumber": 58,
     "undocument": true,
     "params": [
       {
@@ -1229,7 +1229,7 @@
     "longname": "src/tween.js~Tween.easeInOutCirc",
     "access": "public",
     "description": null,
-    "lineNumber": 63,
+    "lineNumber": 61,
     "undocument": true,
     "params": [
       {
@@ -1274,7 +1274,7 @@
     "longname": "src/tween.js~Tween.easeInCubic",
     "access": "public",
     "description": null,
-    "lineNumber": 67,
+    "lineNumber": 65,
     "undocument": true,
     "params": [
       {
@@ -1319,7 +1319,7 @@
     "longname": "src/tween.js~Tween.easeOutCubic",
     "access": "public",
     "description": null,
-    "lineNumber": 70,
+    "lineNumber": 68,
     "undocument": true,
     "params": [
       {
@@ -1364,7 +1364,7 @@
     "longname": "src/tween.js~Tween.easeInOutCubic",
     "access": "public",
     "description": null,
-    "lineNumber": 73,
+    "lineNumber": 71,
     "undocument": true,
     "params": [
       {
@@ -1409,7 +1409,7 @@
     "longname": "src/tween.js~Tween.easeInQuart",
     "access": "public",
     "description": null,
-    "lineNumber": 77,
+    "lineNumber": 75,
     "undocument": true,
     "params": [
       {
@@ -1454,7 +1454,7 @@
     "longname": "src/tween.js~Tween.easeOutQuart",
     "access": "public",
     "description": null,
-    "lineNumber": 80,
+    "lineNumber": 78,
     "undocument": true,
     "params": [
       {
@@ -1499,7 +1499,7 @@
     "longname": "src/tween.js~Tween.easeInOutQuart",
     "access": "public",
     "description": null,
-    "lineNumber": 83,
+    "lineNumber": 81,
     "undocument": true,
     "params": [
       {
@@ -1544,7 +1544,7 @@
     "longname": "src/tween.js~Tween.easeInQuint",
     "access": "public",
     "description": null,
-    "lineNumber": 87,
+    "lineNumber": 85,
     "undocument": true,
     "params": [
       {
@@ -1589,7 +1589,7 @@
     "longname": "src/tween.js~Tween.easeOutQuint",
     "access": "public",
     "description": null,
-    "lineNumber": 90,
+    "lineNumber": 88,
     "undocument": true,
     "params": [
       {
@@ -1634,7 +1634,7 @@
     "longname": "src/tween.js~Tween.easeInOutQuint",
     "access": "public",
     "description": null,
-    "lineNumber": 93,
+    "lineNumber": 91,
     "undocument": true,
     "params": [
       {
@@ -1679,7 +1679,7 @@
     "longname": "src/tween.js~Tween.easeInElastic",
     "access": "public",
     "description": null,
-    "lineNumber": 97,
+    "lineNumber": 95,
     "undocument": true,
     "params": [
       {
@@ -1724,7 +1724,7 @@
     "longname": "src/tween.js~Tween.easeOutElastic",
     "access": "public",
     "description": null,
-    "lineNumber": 117,
+    "lineNumber": 115,
     "undocument": true,
     "params": [
       {
@@ -1769,7 +1769,7 @@
     "longname": "src/tween.js~Tween.easeInOutElastic",
     "access": "public",
     "description": null,
-    "lineNumber": 137,
+    "lineNumber": 135,
     "undocument": true,
     "params": [
       {
@@ -1814,7 +1814,7 @@
     "longname": "src/tween.js~Tween.easeInBack",
     "access": "public",
     "description": null,
-    "lineNumber": 158,
+    "lineNumber": 156,
     "undocument": true,
     "params": [
       {
@@ -1859,7 +1859,7 @@
     "longname": "src/tween.js~Tween.easeOutBack",
     "access": "public",
     "description": null,
-    "lineNumber": 162,
+    "lineNumber": 160,
     "undocument": true,
     "params": [
       {
@@ -1904,7 +1904,7 @@
     "longname": "src/tween.js~Tween.easeInOutBack",
     "access": "public",
     "description": null,
-    "lineNumber": 166,
+    "lineNumber": 164,
     "undocument": true,
     "params": [
       {
@@ -1949,7 +1949,7 @@
     "longname": "src/tween.js~Tween.easeInBounce",
     "access": "public",
     "description": null,
-    "lineNumber": 172,
+    "lineNumber": 170,
     "undocument": true,
     "params": [
       {
@@ -1994,7 +1994,7 @@
     "longname": "src/tween.js~Tween.easeOutBounce",
     "access": "public",
     "description": null,
-    "lineNumber": 176,
+    "lineNumber": 174,
     "undocument": true,
     "params": [
       {
@@ -2039,7 +2039,7 @@
     "longname": "src/tween.js~Tween.easeInOutBounce",
     "access": "public",
     "description": null,
-    "lineNumber": 196,
+    "lineNumber": 194,
     "undocument": true,
     "params": [
       {
@@ -2084,7 +2084,7 @@
     "longname": "src/tween.js~Tween._clamp",
     "access": "private",
     "description": "",
-    "lineNumber": 208,
+    "lineNumber": 206,
     "unknown": [
       {
         "tagName": "@returns",
@@ -2143,7 +2143,7 @@
     "longname": "src/tween.js~Tween._hexToRgb",
     "access": "private",
     "description": "Converts an Hex color value to an array of [r, g, b].",
-    "lineNumber": 218,
+    "lineNumber": 216,
     "params": [
       {
         "nullable": null,
@@ -2176,7 +2176,7 @@
     "longname": "src/tween.js~Tween._rgbToHex",
     "access": "private",
     "description": "Converts an array of [r, g, b] to an Hex color code.",
-    "lineNumber": 236,
+    "lineNumber": 234,
     "params": [
       {
         "nullable": null,
@@ -2206,7 +2206,7 @@
     "longname": "src/tween.js~Tween#_build",
     "access": "private",
     "description": "Builds/Rebuilds the tween object with new info",
-    "lineNumber": 248,
+    "lineNumber": 246,
     "params": [
       {
         "nullable": null,
@@ -2260,7 +2260,7 @@
     "longname": "src/tween.js~Tween#start",
     "access": "public",
     "description": null,
-    "lineNumber": 249,
+    "lineNumber": 247,
     "undocument": true,
     "type": {
       "types": [
@@ -2277,7 +2277,7 @@
     "longname": "src/tween.js~Tween#end",
     "access": "public",
     "description": null,
-    "lineNumber": 250,
+    "lineNumber": 248,
     "undocument": true,
     "type": {
       "types": [
@@ -2294,7 +2294,7 @@
     "longname": "src/tween.js~Tween#duration",
     "access": "public",
     "description": null,
-    "lineNumber": 251,
+    "lineNumber": 249,
     "undocument": true,
     "type": {
       "types": [
@@ -2311,7 +2311,7 @@
     "longname": "src/tween.js~Tween#easing",
     "access": "public",
     "description": null,
-    "lineNumber": 252,
+    "lineNumber": 250,
     "undocument": true,
     "type": {
       "types": [
@@ -2328,7 +2328,7 @@
     "longname": "src/tween.js~Tween#events",
     "access": "public",
     "description": null,
-    "lineNumber": 253,
+    "lineNumber": 251,
     "undocument": true,
     "type": {
       "types": [
@@ -2345,7 +2345,7 @@
     "longname": "src/tween.js~Tween#exportedValues",
     "access": "public",
     "description": null,
-    "lineNumber": 254,
+    "lineNumber": 252,
     "undocument": true,
     "type": {
       "types": [
@@ -2362,7 +2362,7 @@
     "longname": "src/tween.js~Tween#tweening",
     "access": "public",
     "description": null,
-    "lineNumber": 255,
+    "lineNumber": 253,
     "undocument": true,
     "type": {
       "types": [
@@ -2379,7 +2379,7 @@
     "longname": "src/tween.js~Tween#update",
     "access": "public",
     "description": null,
-    "lineNumber": 256,
+    "lineNumber": 254,
     "undocument": true,
     "type": {
       "types": [
@@ -2396,7 +2396,7 @@
     "longname": "src/tween.js~Tween#paused",
     "access": "public",
     "description": null,
-    "lineNumber": 257,
+    "lineNumber": 255,
     "undocument": true,
     "type": {
       "types": [
@@ -2413,7 +2413,7 @@
     "longname": "src/tween.js~Tween#lastTime",
     "access": "public",
     "description": null,
-    "lineNumber": 258,
+    "lineNumber": 256,
     "undocument": true,
     "type": {
       "types": [
@@ -2430,7 +2430,7 @@
     "longname": "src/tween.js~Tween#elapsed",
     "access": "public",
     "description": null,
-    "lineNumber": 259,
+    "lineNumber": 257,
     "undocument": true,
     "type": {
       "types": [
@@ -2449,7 +2449,7 @@
     "longname": "src/tween.js~Tween#build",
     "access": "public",
     "description": "",
-    "lineNumber": 268,
+    "lineNumber": 266,
     "params": [
       {
         "nullable": null,
@@ -2568,7 +2568,7 @@
     "longname": "src/tween.js~Tween#on",
     "access": "public",
     "description": "Attaches a callback to the specified event.",
-    "lineNumber": 283,
+    "lineNumber": 281,
     "params": [
       {
         "nullable": null,
@@ -2609,7 +2609,7 @@
     "longname": "src/tween.js~Tween#animationFrame",
     "access": "public",
     "description": "Update each frame.",
-    "lineNumber": 303,
+    "lineNumber": 301,
     "type": {
       "types": [
         "*"
@@ -2627,7 +2627,7 @@
     "longname": "src/tween.js~Tween#animate",
     "access": "public",
     "description": "Animates the tween by oscillating between the start and end properties.",
-    "lineNumber": 353,
+    "lineNumber": 351,
     "params": [
       {
         "nullable": null,
@@ -2670,7 +2670,7 @@
     "longname": "src/tween.js~Tween#oscillating",
     "access": "public",
     "description": null,
-    "lineNumber": 375,
+    "lineNumber": 373,
     "undocument": true,
     "type": {
       "types": [
@@ -2689,7 +2689,7 @@
     "longname": "src/tween.js~Tween#resume",
     "access": "public",
     "description": "Resumes the tween animation",
-    "lineNumber": 387,
+    "lineNumber": 385,
     "unknown": [
       {
         "tagName": "@returns",
@@ -2717,7 +2717,7 @@
     "longname": "src/tween.js~Tween#pause",
     "access": "public",
     "description": "Pauses the tween animation",
-    "lineNumber": 402,
+    "lineNumber": 400,
     "unknown": [
       {
         "tagName": "@returns",
@@ -2745,7 +2745,7 @@
     "longname": "src/tween.js~Tween#stop",
     "access": "public",
     "description": "Stops the tween and clears all data.",
-    "lineNumber": 414,
+    "lineNumber": 412,
     "params": [],
     "return": null
   },

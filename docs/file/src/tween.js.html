@@ -39,9 +39,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
 * Class for creating a tweening animation
 * @class Tween  
-* @license
-* Tween does not have a license at this time.
-* For licensing contact the author
+* @license Tween does not have a license at this time. For licensing contact the author
 * @author https://github.com/doubleactii
 * Copyright (c) 2023 Evitca Studio
 */
@@ -340,7 +338,7 @@ export class Tween {
      */
     animationFrame = () =&gt; {
         if (!this.tweening || this.paused) return;
-		const now = performance.now();
+		const now = Date.now();
 		if (!this.lastTime) this.lastTime = now;
         this.elapsed += now - this.lastTime;
         let progress = this.elapsed / this.duration;
@@ -424,7 +422,7 @@ export class Tween {
      */
     resume() {
         if (this.paused) {
-            this.lastTime = performance.now();
+            this.lastTime = Date.now();
             this.paused = false;
             if (this.events.resume) {
                 this.events.resume();
