@@ -4,6 +4,9 @@ Tween is a small library for creating tweening animations in JavaScript. It allo
 # Usage
 Here is an example of how to use Tween:
 
+> **Chainable API**  
+> Every method of a tween instance is chainable. This allows for super customization!
+
 ```js
 import { Tween } from './tween.min.js';
 // Start value of tween
