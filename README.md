@@ -25,7 +25,7 @@ const myTween = new Tween({
     start,
     end,
     duration,
-    easing,
+    easing
 });
 
 // Start the animation
@@ -35,9 +35,7 @@ myTween.animate = (({ x, y }) => {
 });
 ```
 
-In this example, we create a new Tween instance with the starting properties start, ending properties end, duration duration, and easing function easing.  
-We also create an object myObject that we want to animate.  
-Finally, we call animate() to start the animation and set the callback to update myObject's properties with the values returned from the tween.
+In this example, we create a new Tween instance with the starting properties start, ending properties end, duration duration, and easing function easing. We also create an object myObject that we want to animate. Finally, we call animate() to start the animation and set the callback to update myObject's properties with the values returned from the tween.
 
 # Options
 Here are the available options for the Tween constructor:
@@ -47,9 +45,7 @@ Here are the available options for the Tween constructor:
 - duration: The duration of the animation in milliseconds. Default is 1000.  
 - easing: The easing function to use for the animation. Default is Tween.linear.  
 
-In an earlier example we passed in the properties of a tween via it's constructor.  
-But we can also change the properties of a tween via the build method.  
-This allows us to reuse tween instances.
+In an earlier example we passed in the properties of a tween via it's constructor. But we can also change the properties of a tween via the build method. This allows us to reuse tween instances.
 ```js
 const start = { x: 0, y: 0 };
 const end = { x: 100, y: 100 };
@@ -61,7 +57,7 @@ myTween.build({
     start,
     end,
     duration,
-    easing,
+    easing
 });
 ```
 
@@ -69,10 +65,10 @@ myTween.build({
 Every tween instance has events you can listen for to help further customize/control the animation.
 
 ```js
-const tweenStartHandler = () => { console.log('Started!'); };
-const tweenEndHandler = () => { console.log('Ended!'); };
-const tweenPauseHandler = () => { console.log('Paused!'); ;
-const tweenResumeHandler = () => { console.log('Resumed!'); ;
+const tweenStartHandler = () => { console.log('Started!'); }
+const tweenEndHandler = () => { console.log('Ended!'); }
+const tweenPauseHandler = () => { console.log('Paused!'); }
+const tweenResumeHandler = () => { console.log('Resumed!'); }
 
 const myTween = new Tween();
 // Called when the tween first starts animating
