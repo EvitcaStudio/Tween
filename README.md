@@ -8,7 +8,7 @@ Here is an example of how to use Tween:
 > Every method of a tween instance is chainable. This allows for super customization!
 
 ```js
-import { Tween } from './tween.min.js';
+import { Tween } from './tween.min.mjs';
 // Start value of tween
 const start = { x: 0, y: 0 };
 // End value of tween
