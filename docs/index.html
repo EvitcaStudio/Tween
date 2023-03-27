@@ -8,7 +8,7 @@
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<meta name="description" content="A tweening library."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Tween"><meta property="twitter:description" content="A tweening library."><meta property="twitter:image" content="./evitcastudio_round_branding.png"></head>
+<meta name="description" content="A tweening library."><meta property="og:type" content="website"><meta property="og:url" content="https://github.com/EvitcaStudio/Tween#readme"><meta property="og:site_name" content="Tween"><meta property="og:title" content="Tween"><meta property="og:image" content="./evitcastudio_round_branding.png"><meta property="og:description" content="A tweening library."><meta property="og:author" content="https://github.com/doubleactii"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Tween"><meta property="twitter:description" content="A tweening library."><meta property="twitter:image" content="./evitcastudio_round_branding.png"></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -29,13 +29,124 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tween.js~Tween.html">Tween</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Event">Event</a></span></span></li>
-</ul>
+  </ul>
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="tween">tween</h1><p>A tweening library.</p>
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="tween">Tween</h1><p>Tween is a small library for creating tweening animations in JavaScript. It allows you to smoothly animate an object&apos;s properties from one value to another over a specified duration using easing functions.</p>
+<h1 id="usage">Usage</h1><p>Here is an example of how to use Tween:</p>
+<blockquote>
+<p><strong>Chainable API</strong><br>Every method of a tween instance is chainable. This allows for super customization!</p>
+</blockquote>
+<pre><code class="lang-js"><code class="source-code prettyprint">import { Tween } from &apos;./tween.min.js&apos;;
+// Start value of tween
+const start = { x: 0, y: 0 };
+// End value of tween
+const end = { x: 100, y: 100 };
+// Duration of tween
+const duration = 1000;
+// Which easing formula to use for the tween
+const easing = Tween.easeInOutQuad;
+
+// Create an object to pass the current values of the tween to
+const myObject = { x: 0, y: 0 };
+// Create the tween with a tweening object
+const myTween = new Tween({
+    start,
+    end,
+    duration,
+    easing
+});
+
+// Start the animation
+myTween.animate = (({ x, y }) =&gt; {
+    myObject.x = x;
+    myObject.y = y;
+});</code>
+</code></pre>
+<p>In this example, we create a new Tween instance with the starting properties start, ending properties end, duration duration, and easing function easing. We also create an object myObject that we want to animate. Finally, we call animate() to start the animation and set the callback to update myObject&apos;s properties with the values returned from the tween.</p>
+<h1 id="options">Options</h1><p>Here are the available options for the Tween constructor:</p>
+<ul>
+<li>start: The starting properties of the animation. Default is an empty object {}.  </li>
+<li>end: The end properties of the animation. Default is an empty object {}.  </li>
+<li>duration: The duration of the animation in milliseconds. Default is 1000.  </li>
+<li>easing: The easing function to use for the animation. Default is Tween.linear.  </li>
+</ul>
+<p>In an earlier example we passed in the properties of a tween via it&apos;s constructor. But we can also change the properties of a tween via the build method. This allows us to reuse tween instances.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const start = { x: 0, y: 0 };
+const end = { x: 100, y: 100 };
+const duration = 1000;
+const easing = Tween.easeInOutQuad;
+
+const myTween = new Tween();
+myTween.build({
+    start,
+    end,
+    duration,
+    easing
+});</code>
+</code></pre>
+<h1 id="events">Events</h1><p>Every tween instance has events you can listen for to help further customize/control the animation.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const tweenStartHandler = () =&gt; { console.log(&apos;Started!&apos;); }
+const tweenEndHandler = () =&gt; { console.log(&apos;Ended!&apos;); }
+const tweenPauseHandler = () =&gt; { console.log(&apos;Paused!&apos;); }
+const tweenResumeHandler = () =&gt; { console.log(&apos;Resumed!&apos;); }
+
+const myTween = new Tween();
+// Called when the tween first starts animating
+myTween.on(&apos;start&apos;, tweenStartHandler});
+// Called when the tween has completed
+myTween.on(&apos;end&apos;, tweenEndHandler);
+// Called when the tween is paused
+myTween.on(&apos;pause&apos;, tweenPauseHandler);
+// Called when the tween has resumed
+myTween.on(&apos;resume&apos;, tweenResumeHandler);
+
+// Or take advantage of the chainable API
+myTween.on(&apos;start&apos;, tweenStartHandler)
+.on(&apos;end&apos;, tweenEndHandler)
+.on(&apos;pause&apos;, tweenPauseHandler)
+.on(&apos;resume&apos;, tweenResumeHandler);</code>
+</code></pre>
+<p>You also have the ability to further control the tween via it&apos;s methods.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const myTween = new Tween();
+myTween.pause(); // Pauses a tween&apos;s animation
+myTween.resume(); // Resumes a paused tween&apos;s animation
+myTween.stop(); // Stops the tween&apos;s animation</code>
+</code></pre>
+<p>You can oscillate a tween by setting the <code>oscillate</code> parameter inside of the animate API to <code>true</code>.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const myTween = new Tween();
+// Start the animation
+myTween.animate = (({ x, y }, true) =&gt; {
+    // Will loop between the start and end values until stopped
+    myObject.x = x;
+    myObject.y = y;
+});</code>
+</code></pre>
+<h1 id="easing-functions">Easing Functions</h1><p>The following easing functions are available in Tween:</p>
+<ul>
+<li>linear  </li>
+<li>easeInQuad  </li>
+<li>easeOutQuad  </li>
+<li>easeInOutQuad  </li>
+<li>easeInSine  </li>
+<li>easeOutSine  </li>
+<li>easeInOutSine  </li>
+<li>easeInExpo  </li>
+<li>easeOutExpo  </li>
+<li>easeInOutExpo  </li>
+<li>easeInCirc  </li>
+<li>easeOutCirc  </li>
+<li>easeInOutCirc  </li>
+<li>easeInCubic  </li>
+<li>easeOutCubic  </li>
+<li>easeInOutCubic  </li>
+<li>easeInQuart  </li>
+<li>easeOutQuart  </li>
+<li>easeInOutQuart  </li>
+</ul>
+<p>You can reference them via <code>Tween.easeFunctionName</code></p>
+<h1 id="license">License</h1><p>Tween does not have a license at this time. For licensing, contact the author.</p>
 </div>
 </div>
 
