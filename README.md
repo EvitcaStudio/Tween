@@ -29,7 +29,7 @@ const myTween = new Tween({
 });
 
 // Start the animation
-myTween.animate = (({ x, y }) => {
+myTween.animate(({ x, y }) => {
     myObject.x = x;
     myObject.y = y;
 });
