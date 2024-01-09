@@ -1,10 +1,12 @@
+import { Logger } from './vendor/logger.min.mjs';
+
 /**
 * Class for creating a tweening animation
 * @class Tween  
 * @license Tween does not have a license at this time. For licensing contact the author
 * @author https://github.com/doubleactii
 */
-export class Tween {
+class Tween {
     /**
      * @param {Object} [pOtions={}] - The options for the tween animation
      * @param {Object} [pOtions.start={}] - The starting properties of the animation
@@ -286,10 +288,10 @@ export class Tween {
                     this.events[pEvent] = pCallback;
                     break;
                 default:
-                    console.error(`The event "${pEvent}" is not supported.`);
+                    logger.prefix('Tween-Module').error(`The event "${pEvent}" is not supported.`);
             }
         } else {
-            console.error(`The callback for event "${pEvent}" is not a function.`);
+            logger.prefix('Tween-Module').error(`The callback for event "${pEvent}" is not a function.`);
         }
         return this;
     }
@@ -348,7 +350,7 @@ export class Tween {
      */
     animate(pUpdate, pOscillate = false) {
         if (typeof(pUpdate) !== "function") {
-            console.error("The pUpdate parameter passed to animate is not a function.");
+            logger.prefix('Tween-Module').error("The pUpdate parameter passed to animate is not a function.");
             return;
         }
         if (this.tweening) return;
@@ -356,12 +358,12 @@ export class Tween {
         let endProperties = Object.keys(this.end);
 
         if (!startProperties.length || !endProperties.length) {
-            console.error("The start object or the end object has no properties.");
+            logger.prefix('Tween-Module').error("The start object or the end object has no properties.");
             return;
         }
 
         if (!startProperties.every(prop => endProperties.includes(prop))) {
-            console.error("The end object is missing properties that the start object has.");
+            logger.prefix('Tween-Module').error("The end object is missing properties that the start object has.");
             return;
         }
 
@@ -421,3 +423,12 @@ export class Tween {
         }
     }
 }
+
+/**
+ * The logger for this module.
+ * @ignore
+ */
+const logger = new Logger();
+logger.registerType('Tween-Module', '#ff6600');
+
+export { Tween };
