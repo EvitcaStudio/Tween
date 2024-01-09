@@ -2,20 +2,21 @@
   "name": "tween",
   "version": "1.0.0",
   "description": "Tween is a small library for creating tweening animations in JavaScript. It allows you to smoothly animate an object's properties from one value to another over a specified duration using easing functions.",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "main": "dist/tween.min.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-dist": "uglifyjs src/tween.mjs -m -c --comments -o dist/tween.min.mjs && esdoc -c esdoc.json"
+    "build": "npx webpack && npm run build:minify && node add-version-script.js && node add-banner-script.js",
+    "build:minify": "uglifyjs dist/tween.min.mjs -m -c --comments -o dist/tween.min.mjs",
+    "build:prod": "npx webpack --mode production && npm run build:minify && node add-version-script.js && node add-banner-script.js && npm run build:docs",
+    "build:docs": "esdoc -c esdoc.json"
   },
+  "keywords": [],
+  "author": "https://github.com/doubleactii",
+  "license": "SEE LICENSE IN LICENSE.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EvitcaStudio/Tween.git"
+    "url": "https://github.com/EvitcaStudio/Tween.git"
   },
-  "author": "https://github.com/doubleactii",
-  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/EvitcaStudio/Tween/issues"
   },
@@ -24,6 +25,8 @@
     "esdoc": "^1.1.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "uglify-js": "^3.17.4"
+    "uglify-js": "^3.17.4",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

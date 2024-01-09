@@ -420,10 +420,10 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/tween.mjs~tween.event",
-    "typedef/index.html#static-typedef-Event",
-    "src/tween.mjs~Tween.Event",
-    "typedef"
+    "src/tween.mjs~tween#version",
+    "class/src/tween.mjs~Tween.html#instance-member-version",
+    "src/tween.mjs~Tween#version",
+    "member"
   ],
   [
     "src/tween.mjs~tween._clamp",

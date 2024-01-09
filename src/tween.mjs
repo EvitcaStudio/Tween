@@ -3,7 +3,6 @@
 * @class Tween  
 * @license Tween does not have a license at this time. For licensing contact the author
 * @author https://github.com/doubleactii
-* Copyright (c) 2023 Evitca Studio
 */
 export class Tween {
     /**
@@ -236,6 +235,10 @@ export class Tween {
 			return '#' + pColorArray.map((pColor) => Math.abs(Math.round(pColor)).toString(16).padStart(2, '0')).join('');
 		}
 	}
+	/**
+	 * The version of the module.
+	 */
+	version = "VERSION_REPLACE_ME";
     /**
      * Builds/Rebuilds the tween object with new info
      * @param {Object} pStart - The start object containing the start values
@@ -268,14 +271,9 @@ export class Tween {
         return this;
     }
     /**
-     * @typedef {Object} Event
-     * @property {string} event - The event name
-     * @property {function} callback - The function to be called when the event is triggered
-     */
-    /**
      * Attaches a callback to the specified event.
-     * @param {Event['event']} pEvent - The event to attach the callback to
-     * @param {Event['callback']} pCallback - The function to be called when the event is triggered
+     * @param {Object} pEvent - The event to attach the callback to
+     * @param {Function} pCallback - The function to be called when the event is triggered
      * @return {Tween} The Tween instance
      */
     on(pEvent, pCallback) {
