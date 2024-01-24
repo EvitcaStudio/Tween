@@ -169,7 +169,7 @@ class Tween {
     }
 
     static easeInBounce(t, b, c, d) {
-        return c - this.easeOutBounce(d - t, 0, c, d) + b;
+        return c - Tween.easeOutBounce(d - t, 0, c, d) + b;
     }
 
     static easeOutBounce(t, b, c, d) {
@@ -194,9 +194,9 @@ class Tween {
 
     static easeInOutBounce(t, b, c, d) {
         if (t < d*0.5) {
-            return (this.easeInBounce(t*2, 0, c, d)*0.5 + b);
+            return (Tween.easeInBounce(t*2, 0, c, d)*0.5 + b);
         }
-        return (this.easeOutBounce(t*2 - d, 0, c, d)*0.5 + c*0.5 + b);
+        return (Tween.easeOutBounce(t*2 - d, 0, c, d)*0.5 + c*0.5 + b);
     }
 	/**
 	 * @param {number} pNumber - The number to clamp
