@@ -34,12 +34,18 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="tween">Tween</h1><p>Tween is a small library for creating tweening animations in JavaScript. It allows you to smoothly animate an object&apos;s properties from one value to another over a specified duration using easing functions.</p>
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="tween-module">Tween Module</h1><p>Tween is a small library for creating tweening animations in JavaScript. It allows you to smoothly animate an object&apos;s properties from one value to another over a specified duration using easing functions.</p>
+<h2 id="installation">Installation</h2><h3 id="es-module">ES Module</h3><pre><code class="lang-js"><code class="source-code prettyprint">import { Tween } from &apos;./tween.mjs&apos;;</code>
+</code></pre>
+<h3 id="iife--immediately-invoked-function-expression-">IIFE (Immediately Invoked Function Expression)</h3><pre><code class="lang-js"><code class="source-code prettyprint">&lt;script src=&quot;tween.js&quot;&gt;&lt;/script&gt;;
+// ...
+window.TweenBundle.Tween;</code>
+</code></pre>
 <h1 id="usage">Usage</h1><p>Here is an example of how to use Tween:</p>
 <blockquote>
 <p><strong>Chainable API</strong><br>Every method of a tween instance is chainable. This allows for super customization!</p>
 </blockquote>
-<pre><code class="lang-js"><code class="source-code prettyprint">import { Tween } from &apos;./tween.min.mjs&apos;;
+<pre><code class="lang-js"><code class="source-code prettyprint">import { Tween } from &apos;./tween.mjs&apos;;
 // Start value of tween
 const start = { x: 0, y: 0 };
 // End value of tween
@@ -147,7 +153,7 @@ myTween.animate = (({ x, y }, true) =&gt; {
 <li>easeInOutQuart  </li>
 </ul>
 <p>You can reference them via <code>Tween.easeFunctionName</code></p>
-<h1 id="license">License</h1><p>Tween does not have a license at this time. For licensing, contact the author.</p>
+<h3 id="global-dependency">Global Dependency</h3><p>Tween relies on the <code>VYLO</code> variable being globally accessible.</p>
 </div>
 </div>
 

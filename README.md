@@ -1,5 +1,21 @@
-# Tween
+# Tween Module
 Tween is a small library for creating tweening animations in JavaScript. It allows you to smoothly animate an object's properties from one value to another over a specified duration using easing functions.
+
+## Installation
+
+### ES Module
+
+```js
+import { Tween } from './tween.mjs';
+```
+
+### IIFE (Immediately Invoked Function Expression)
+
+```js
+<script src="tween.js"></script>;
+// ...
+window.TweenBundle.Tween;
+```
 
 # Usage
 Here is an example of how to use Tween:
@@ -8,7 +24,7 @@ Here is an example of how to use Tween:
 > Every method of a tween instance is chainable. This allows for super customization!
 
 ```js
-import { Tween } from './tween.min.mjs';
+import { Tween } from './tween.mjs';
 // Start value of tween
 const start = { x: 0, y: 0 };
 // End value of tween
@@ -130,5 +146,7 @@ The following easing functions are available in Tween:
 - easeInOutQuart  
 
 You can reference them via `Tween.easeFunctionName`
-# License
-Tween does not have a license at this time. For licensing, contact the author.
+
+### Global Dependency
+
+Tween relies on the `VYLO` variable being globally accessible.

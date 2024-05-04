@@ -1,8 +1,8 @@
 window.esdocSearchIndex = [
   [
-    "tween/src/tween.mjs~tween",
+    "tween~tween",
     "class/src/tween.mjs~Tween.html",
-    "<span>Tween</span> <span class=\"search-result-import-path\">tween/src/tween.mjs</span>",
+    "<span>Tween</span> <span class=\"search-result-import-path\">tween</span>",
     "class"
   ],
   [
