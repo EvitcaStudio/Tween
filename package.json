@@ -1,15 +1,20 @@
 {
   "name": "tween",
-  "version": "1.0.0",
-  "description": "Tween is a small library for creating tweening animations in JavaScript. It allows you to smoothly animate an object's properties from one value to another over a specified duration using easing functions.",
-  "main": "src/tween.mjs",
+  "version": "2.0.0",
+  "description": "Tween is a small library for creating tweening animations in TypeScript. It allows you to smoothly animate an object's properties from one value to another over a specified duration using easing functions.",
+  "main": "dist/esm/tween.js",
+  "types": "dist/tween.d.ts",
+  "files": [
+    "dist/**/*",
+    "src/**/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:rollup": "npx rollup -c --failAfterWarnings",
-    "build:docs": "esdoc -c esdoc.json",
-    "build:dist": "npm run build:rollup && npm run build:docs"
+    "build": "bun run bun-build.ts && npx tsc --declaration --emitDeclarationOnly --declarationMap false --sourceMap false",
+    "build:docs": "typedoc",
+    "build:dist": "bun run build && bun run build:docs"
   },
-  "keywords": [],
+  "keywords": ["tween", "animation", "typescript", "easing"],
   "author": "https://github.com/doubleactii",
   "license": "MIT",
   "repository": {
@@ -21,14 +26,9 @@
   },
   "homepage": "https://github.com/EvitcaStudio/Tween#readme",
   "devDependencies": {
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-terser": "^0.4.4",
-    "esdoc": "^1.1.0",
-    "esdoc-ecmascript-proposal-plugin": "^1.0.0",
-    "esdoc-standard-plugin": "^1.0.0",
-    "rollup": "^4.14.1",
-    "rollup-plugin-banner2": "^1.2.3",
-    "rollup-plugin-cleandir": "^2.0.0",
-    "rollup-plugin-replace": "^2.2.0"
+    "bun": "^1.2.22",
+    "chalk": "^5.6.2",
+    "typescript": "^5.0.0",
+    "typedoc": "^0.25.0"
   }
 }

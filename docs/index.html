@@ -1,136 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | Tween</title>
-  <link type="text/css" rel="stylesheet" href="css/style.css">
-  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
-  <script src="script/prettify/prettify.js"></script>
-  <script src="script/manual.js"></script>
-<meta name="description" content="A tweening library."><meta property="og:type" content="website"><meta property="og:url" content="https://github.com/EvitcaStudio/Tween#readme"><meta property="og:site_name" content="Tween"><meta property="og:title" content="Tween"><meta property="og:image" content="./evitcastudio_round_branding.png"><meta property="og:description" content="A tweening library."><meta property="og:author" content="https://github.com/doubleactii"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Tween"><meta property="twitter:description" content="A tweening library."><meta property="twitter:image" content="./evitcastudio_round_branding.png"></head>
-<body class="layout-container" data-ice="rootContainer">
-
-<header>
-  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
-  
-  <a href="identifiers.html">Reference</a>
-  <a href="source.html">Source</a>
-  
-  <div class="search-box">
-  <span>
-    <img src="./image/search.png">
-    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
-  </span>
-    <ul class="search-result"></ul>
-  </div>
-<a style="position:relative; top:3px;" href="https://github.com/doubleactii/tween"><img width="20px" src="./image/github.png"></a></header>
-
-<nav class="navigation" data-ice="nav"><div>
-  <ul>
-    
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/tween.mjs~Tween.html">Tween</a></span></span></li>
-</ul>
-</div>
-</nav>
-
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="tween-module">Tween Module</h1><p>Tween is a small library for creating tweening animations in JavaScript. It allows you to smoothly animate an object&apos;s properties from one value to another over a specified duration using easing functions.</p>
-<h2 id="installation">Installation</h2><h3 id="es-module">ES Module</h3><pre><code class="lang-js"><code class="source-code prettyprint">import { Tween } from &apos;./tween.mjs&apos;;</code>
-</code></pre>
-<h3 id="iife--immediately-invoked-function-expression-">IIFE (Immediately Invoked Function Expression)</h3><pre><code class="lang-js"><code class="source-code prettyprint">&lt;script src=&quot;tween.js&quot;&gt;&lt;/script&gt;;
-// ...
-window.TweenBundle.Tween;</code>
-</code></pre>
-<h1 id="usage">Usage</h1><p>Here is an example of how to use Tween:</p>
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Tween - v2.0.0</title><meta name="description" content="Documentation for Tween"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">Tween - v2.0.0</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h2>Tween - v2.0.0</h2></div><div class="tsd-panel tsd-typography"><a id="md:tween-module" class="tsd-anchor"></a><h1><a href="#md:tween-module">Tween Module</a></h1><p>Tween is a small library for creating tweening animations in JavaScript. It allows you to smoothly animate an object&#39;s properties from one value to another over a specified duration using easing functions.</p>
+<a id="md:installation" class="tsd-anchor"></a><h2><a href="#md:installation">Installation</a></h2><a id="md:es-module" class="tsd-anchor"></a><h3><a href="#md:es-module">ES Module</a></h3><pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">Tween</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;./tween.mjs&#39;</span><span class="hl-1">;</span>
+</code><button>Copy</button></pre>
+<a id="md:iife-immediately-invoked-function-expression" class="tsd-anchor"></a><h3><a href="#md:iife-immediately-invoked-function-expression">IIFE (Immediately Invoked Function Expression)</a></h3><pre><code class="language-js"><span class="hl-4">&lt;</span><span class="hl-5">script</span><span class="hl-1"> </span><span class="hl-6">src</span><span class="hl-1">=</span><span class="hl-3">&quot;tween.js&quot;</span><span class="hl-4">&gt;&lt;/</span><span class="hl-5">script</span><span class="hl-4">&gt;</span><span class="hl-1">;</span><br/><span class="hl-7">// ...</span><br/><span class="hl-2">window</span><span class="hl-1">.</span><span class="hl-2">TweenBundle</span><span class="hl-1">.</span><span class="hl-2">Tween</span><span class="hl-1">;</span>
+</code><button>Copy</button></pre>
+<a id="md:usage" class="tsd-anchor"></a><h1><a href="#md:usage">Usage</a></h1><p>Here is an example of how to use Tween:</p>
 <blockquote>
 <p><strong>Chainable API</strong><br>Every method of a tween instance is chainable. This allows for super customization!</p>
 </blockquote>
-<pre><code class="lang-js"><code class="source-code prettyprint">import { Tween } from &apos;./tween.mjs&apos;;
-// Start value of tween
-const start = { x: 0, y: 0 };
-// End value of tween
-const end = { x: 100, y: 100 };
-// Duration of tween
-const duration = 1000;
-// Which easing formula to use for the tween
-const easing = Tween.easeInOutQuad;
-
-// Create an object to pass the current values of the tween to
-const myObject = { x: 0, y: 0 };
-// Create the tween with a tweening object
-const myTween = new Tween({
-    start,
-    end,
-    duration,
-    easing
-});
-
-// Start the animation
-myTween.animate(({ x, y }) =&gt; {
-    myObject.x = x;
-    myObject.y = y;
-});</code>
-</code></pre>
-<p>In this example, we create a new Tween instance with the starting properties start, ending properties end, duration duration, and easing function easing. We also create an object myObject that we want to animate. Finally, we call animate() to start the animation and set the callback to update myObject&apos;s properties with the values returned from the tween.</p>
-<h1 id="options">Options</h1><p>Here are the available options for the Tween constructor:</p>
+<pre><code class="language-js"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">Tween</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;./tween.mjs&#39;</span><span class="hl-1">;</span><br/><span class="hl-7">// Start value of tween</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">start</span><span class="hl-1"> = { </span><span class="hl-2">x:</span><span class="hl-1"> </span><span class="hl-10">0</span><span class="hl-1">, </span><span class="hl-2">y:</span><span class="hl-1"> </span><span class="hl-10">0</span><span class="hl-1"> };</span><br/><span class="hl-7">// End value of tween</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">end</span><span class="hl-1"> = { </span><span class="hl-2">x:</span><span class="hl-1"> </span><span class="hl-10">100</span><span class="hl-1">, </span><span class="hl-2">y:</span><span class="hl-1"> </span><span class="hl-10">100</span><span class="hl-1"> };</span><br/><span class="hl-7">// Duration of tween</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">duration</span><span class="hl-1"> = </span><span class="hl-10">1000</span><span class="hl-1">;</span><br/><span class="hl-7">// Which easing formula to use for the tween</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">easing</span><span class="hl-1"> = </span><span class="hl-2">Tween</span><span class="hl-1">.</span><span class="hl-2">easeInOutQuad</span><span class="hl-1">;</span><br/><br/><span class="hl-7">// Create an object to pass the current values of the tween to</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">myObject</span><span class="hl-1"> = { </span><span class="hl-2">x:</span><span class="hl-1"> </span><span class="hl-10">0</span><span class="hl-1">, </span><span class="hl-2">y:</span><span class="hl-1"> </span><span class="hl-10">0</span><span class="hl-1"> };</span><br/><span class="hl-7">// Create the tween with a tweening object</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">myTween</span><span class="hl-1"> = </span><span class="hl-8">new</span><span class="hl-1"> </span><span class="hl-11">Tween</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-2">start</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">end</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">duration</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">easing</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-7">// Start the animation</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-11">animate</span><span class="hl-1">(({ </span><span class="hl-2">x</span><span class="hl-1">, </span><span class="hl-2">y</span><span class="hl-1"> }) </span><span class="hl-8">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-2">myObject</span><span class="hl-1">.</span><span class="hl-2">x</span><span class="hl-1"> = </span><span class="hl-2">x</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-2">myObject</span><span class="hl-1">.</span><span class="hl-2">y</span><span class="hl-1"> = </span><span class="hl-2">y</span><span class="hl-1">;</span><br/><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+<p>In this example, we create a new Tween instance with the starting properties start, ending properties end, duration duration, and easing function easing. We also create an object myObject that we want to animate. Finally, we call animate() to start the animation and set the callback to update myObject&#39;s properties with the values returned from the tween.</p>
+<a id="md:options" class="tsd-anchor"></a><h1><a href="#md:options">Options</a></h1><p>Here are the available options for the Tween constructor:</p>
 <ul>
 <li>start: The starting properties of the animation. Default is an empty object {}.  </li>
 <li>end: The end properties of the animation. Default is an empty object {}.  </li>
 <li>duration: The duration of the animation in milliseconds. Default is 1000.  </li>
-<li>easing: The easing function to use for the animation. Default is Tween.linear.  </li>
+<li>easing: The easing function to use for the animation. Default is Tween.linear.</li>
 </ul>
-<p>In an earlier example we passed in the properties of a tween via it&apos;s constructor. But we can also change the properties of a tween via the build method. This allows us to reuse tween instances.</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">const start = { x: 0, y: 0 };
-const end = { x: 100, y: 100 };
-const duration = 1000;
-const easing = Tween.easeInOutQuad;
-
-const myTween = new Tween();
-myTween.build({
-    start,
-    end,
-    duration,
-    easing
-});</code>
-</code></pre>
-<h1 id="events">Events</h1><p>Every tween instance has events you can listen for to help further customize/control the animation.</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">const tweenStartHandler = () =&gt; { console.log(&apos;Started!&apos;); }
-const tweenEndHandler = () =&gt; { console.log(&apos;Ended!&apos;); }
-const tweenPauseHandler = () =&gt; { console.log(&apos;Paused!&apos;); }
-const tweenResumeHandler = () =&gt; { console.log(&apos;Resumed!&apos;); }
-
-const myTween = new Tween();
-// Called when the tween first starts animating
-myTween.on(&apos;start&apos;, tweenStartHandler});
-// Called when the tween has completed
-myTween.on(&apos;end&apos;, tweenEndHandler);
-// Called when the tween is paused
-myTween.on(&apos;pause&apos;, tweenPauseHandler);
-// Called when the tween has resumed
-myTween.on(&apos;resume&apos;, tweenResumeHandler);
-
-// Or take advantage of the chainable API
-myTween.on(&apos;start&apos;, tweenStartHandler)
-.on(&apos;end&apos;, tweenEndHandler)
-.on(&apos;pause&apos;, tweenPauseHandler)
-.on(&apos;resume&apos;, tweenResumeHandler);</code>
-</code></pre>
-<p>You also have the ability to further control the tween via it&apos;s methods.</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">const myTween = new Tween();
-myTween.pause(); // Pauses a tween&apos;s animation
-myTween.resume(); // Resumes a paused tween&apos;s animation
-myTween.stop(); // Stops the tween&apos;s animation</code>
-</code></pre>
+<p>In an earlier example we passed in the properties of a tween via it&#39;s constructor. But we can also change the properties of a tween via the build method. This allows us to reuse tween instances.</p>
+<pre><code class="language-js"><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">start</span><span class="hl-1"> = { </span><span class="hl-2">x:</span><span class="hl-1"> </span><span class="hl-10">0</span><span class="hl-1">, </span><span class="hl-2">y:</span><span class="hl-1"> </span><span class="hl-10">0</span><span class="hl-1"> };</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">end</span><span class="hl-1"> = { </span><span class="hl-2">x:</span><span class="hl-1"> </span><span class="hl-10">100</span><span class="hl-1">, </span><span class="hl-2">y:</span><span class="hl-1"> </span><span class="hl-10">100</span><span class="hl-1"> };</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">duration</span><span class="hl-1"> = </span><span class="hl-10">1000</span><span class="hl-1">;</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">easing</span><span class="hl-1"> = </span><span class="hl-2">Tween</span><span class="hl-1">.</span><span class="hl-2">easeInOutQuad</span><span class="hl-1">;</span><br/><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">myTween</span><span class="hl-1"> = </span><span class="hl-8">new</span><span class="hl-1"> </span><span class="hl-11">Tween</span><span class="hl-1">();</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-11">build</span><span class="hl-1">({</span><br/><span class="hl-1">    </span><span class="hl-2">start</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">end</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">duration</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">easing</span><br/><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+<a id="md:events" class="tsd-anchor"></a><h1><a href="#md:events">Events</a></h1><p>Every tween instance has events you can listen for to help further customize/control the animation.</p>
+<pre><code class="language-js"><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-11">tweenStartHandler</span><span class="hl-1"> = () </span><span class="hl-8">=&gt;</span><span class="hl-1"> { </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-11">log</span><span class="hl-1">(</span><span class="hl-3">&#39;Started!&#39;</span><span class="hl-1">); }</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-11">tweenEndHandler</span><span class="hl-1"> = () </span><span class="hl-8">=&gt;</span><span class="hl-1"> { </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-11">log</span><span class="hl-1">(</span><span class="hl-3">&#39;Ended!&#39;</span><span class="hl-1">); }</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-11">tweenPauseHandler</span><span class="hl-1"> = () </span><span class="hl-8">=&gt;</span><span class="hl-1"> { </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-11">log</span><span class="hl-1">(</span><span class="hl-3">&#39;Paused!&#39;</span><span class="hl-1">); }</span><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-11">tweenResumeHandler</span><span class="hl-1"> = () </span><span class="hl-8">=&gt;</span><span class="hl-1"> { </span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-11">log</span><span class="hl-1">(</span><span class="hl-3">&#39;Resumed!&#39;</span><span class="hl-1">); }</span><br/><br/><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">myTween</span><span class="hl-1"> = </span><span class="hl-8">new</span><span class="hl-1"> </span><span class="hl-11">Tween</span><span class="hl-1">();</span><br/><span class="hl-7">// Called when the tween first starts animating</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-11">on</span><span class="hl-1">(</span><span class="hl-3">&#39;start&#39;</span><span class="hl-1">, </span><span class="hl-2">tweenStartHandler</span><span class="hl-1">});</span><br/><span class="hl-7">// Called when the tween has completed</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-11">on</span><span class="hl-1">(</span><span class="hl-3">&#39;end&#39;</span><span class="hl-1">, </span><span class="hl-2">tweenEndHandler</span><span class="hl-1">);</span><br/><span class="hl-7">// Called when the tween is paused</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-11">on</span><span class="hl-1">(</span><span class="hl-3">&#39;pause&#39;</span><span class="hl-1">, </span><span class="hl-2">tweenPauseHandler</span><span class="hl-1">);</span><br/><span class="hl-7">// Called when the tween has resumed</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-11">on</span><span class="hl-1">(</span><span class="hl-3">&#39;resume&#39;</span><span class="hl-1">, </span><span class="hl-2">tweenResumeHandler</span><span class="hl-1">);</span><br/><br/><span class="hl-7">// Or take advantage of the chainable API</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-11">on</span><span class="hl-1">(</span><span class="hl-3">&#39;start&#39;</span><span class="hl-1">, </span><span class="hl-2">tweenStartHandler</span><span class="hl-1">)</span><br/><span class="hl-1">.</span><span class="hl-11">on</span><span class="hl-1">(</span><span class="hl-3">&#39;end&#39;</span><span class="hl-1">, </span><span class="hl-2">tweenEndHandler</span><span class="hl-1">)</span><br/><span class="hl-1">.</span><span class="hl-11">on</span><span class="hl-1">(</span><span class="hl-3">&#39;pause&#39;</span><span class="hl-1">, </span><span class="hl-2">tweenPauseHandler</span><span class="hl-1">)</span><br/><span class="hl-1">.</span><span class="hl-11">on</span><span class="hl-1">(</span><span class="hl-3">&#39;resume&#39;</span><span class="hl-1">, </span><span class="hl-2">tweenResumeHandler</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
+<p>You also have the ability to further control the tween via it&#39;s methods.</p>
+<pre><code class="language-js"><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">myTween</span><span class="hl-1"> = </span><span class="hl-8">new</span><span class="hl-1"> </span><span class="hl-11">Tween</span><span class="hl-1">();</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-11">pause</span><span class="hl-1">(); </span><span class="hl-7">// Pauses a tween&#39;s animation</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-11">resume</span><span class="hl-1">(); </span><span class="hl-7">// Resumes a paused tween&#39;s animation</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-11">stop</span><span class="hl-1">(); </span><span class="hl-7">// Stops the tween&#39;s animation</span>
+</code><button>Copy</button></pre>
 <p>You can oscillate a tween by setting the <code>oscillate</code> parameter inside of the animate API to <code>true</code>.</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">const myTween = new Tween();
-// Start the animation
-myTween.animate = (({ x, y }, true) =&gt; {
-    // Will loop between the start and end values until stopped
-    myObject.x = x;
-    myObject.y = y;
-});</code>
-</code></pre>
-<h1 id="easing-functions">Easing Functions</h1><p>The following easing functions are available in Tween:</p>
+<pre><code class="language-js"><span class="hl-8">const</span><span class="hl-1"> </span><span class="hl-9">myTween</span><span class="hl-1"> = </span><span class="hl-8">new</span><span class="hl-1"> </span><span class="hl-11">Tween</span><span class="hl-1">();</span><br/><span class="hl-7">// Start the animation</span><br/><span class="hl-2">myTween</span><span class="hl-1">.</span><span class="hl-2">animate</span><span class="hl-1"> = (({ </span><span class="hl-2">x</span><span class="hl-1">, </span><span class="hl-2">y</span><span class="hl-1"> }, </span><span class="hl-2">true</span><span class="hl-1">) </span><span class="hl-8">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-7">// Will loop between the start and end values until stopped</span><br/><span class="hl-1">    </span><span class="hl-2">myObject</span><span class="hl-1">.</span><span class="hl-2">x</span><span class="hl-1"> = </span><span class="hl-2">x</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-2">myObject</span><span class="hl-1">.</span><span class="hl-2">y</span><span class="hl-1"> = </span><span class="hl-2">y</span><span class="hl-1">;</span><br/><span class="hl-1">});</span>
+</code><button>Copy</button></pre>
+<a id="md:easing-functions" class="tsd-anchor"></a><h1><a href="#md:easing-functions">Easing Functions</a></h1><p>The following easing functions are available in Tween:</p>
 <ul>
 <li>linear  </li>
 <li>easeInQuad  </li>
@@ -150,23 +49,8 @@ myTween.animate = (({ x, y }, true) =&gt; {
 <li>easeInOutCubic  </li>
 <li>easeInQuart  </li>
 <li>easeOutQuart  </li>
-<li>easeInOutQuart  </li>
+<li>easeInOutQuart</li>
 </ul>
 <p>You can reference them via <code>Tween.easeFunctionName</code></p>
-<h3 id="global-dependency">Global Dependency</h3><p>Tween relies on the <code>VYLO</code> variable being globally accessible.</p>
-</div>
-</div>
-
-<footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
-</footer>
-
-<script src="script/search_index.js"></script>
-<script src="script/search.js"></script>
-<script src="script/pretty-print.js"></script>
-<script src="script/inherited-summary.js"></script>
-<script src="script/test-summary.js"></script>
-<script src="script/inner-link.js"></script>
-<script src="script/patch-for-local.js"></script>
-</body>
-</html>
+<a id="md:global-dependency" class="tsd-anchor"></a><h3><a href="#md:global-dependency">Global Dependency</a></h3><p>Tween relies on the <code>VYLO</code> variable being globally accessible.</p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-index-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><h4 class="uppercase">Member Visibility</h4><form><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></form></div><div class="tsd-theme-toggle"><h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-index-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:tween-module"><span>Tween <wbr/>Module</span></a><ul><li><a href="#md:installation"><span>Installation</span></a></li><li><ul><li><a href="#md:es-module"><span>ES <wbr/>Module</span></a></li><li><a href="#md:iife-immediately-invoked-function-expression"><span>IIFE (<wbr/>Immediately <wbr/>Invoked <wbr/>Function <wbr/>Expression)</span></a></li></ul></li></ul><a href="#md:usage"><span>Usage</span></a><a href="#md:options"><span>Options</span></a><a href="#md:events"><span>Events</span></a><a href="#md:easing-functions"><span>Easing <wbr/>Functions</span></a><ul><li><a href="#md:global-dependency"><span>Global <wbr/>Dependency</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>Tween - v2.0.0</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
