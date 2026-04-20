@@ -604,12 +604,13 @@ class Tween {
 		if (!this.lastTime) this.lastTime = now;
         this.elapsed += now - this.lastTime;
         let progress = this.elapsed / this.duration;
-        
+
         if (this.oscillating) {
-            progress = (1 - Math.cos(progress * Math.PI)) / 2;
-        }
-        
-        if (progress > 1) {
+            progress %= 2;
+            if (progress > 1) {
+                progress = 2 - progress;
+            }
+        } else if (progress > 1) {
             progress = 1;
         }
 
