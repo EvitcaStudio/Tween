@@ -641,7 +641,7 @@ class Tween {
                 this.events.end();
             }
         } else {
-            requestAnimationFrame(this.animationFrame);
+            this.rafId = requestAnimationFrame(this.animationFrame);
         }
 		this.lastTime = now;
     }
@@ -678,7 +678,7 @@ class Tween {
         if (this.events.start) {
             this.events.start();
         }
-        requestAnimationFrame(this.animationFrame);
+        this.rafId = requestAnimationFrame(this.animationFrame);
         return this;
     }
     /**
@@ -692,7 +692,7 @@ class Tween {
             if (this.events.resume) {
                 this.events.resume();
             }
-            requestAnimationFrame(this.animationFrame);
+            this.rafId = requestAnimationFrame(this.animationFrame);
         }
         return this;
     }
@@ -713,6 +713,10 @@ class Tween {
      * Stops the tween and clears all data.
      */
     stop(): void {
+        if (this.rafId !== null) {
+            cancelAnimationFrame(this.rafId);
+            this.rafId = null;
+        }
         this.tweening = false;
         this.oscillating = false;
         this.update = null;
@@ -739,6 +743,7 @@ class Tween {
     lastTime: number = 0;
     elapsed: number = 0;
     oscillating: boolean = false;
+    rafId: number | null = null;
 }
 
 /**
